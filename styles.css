@@ -1,0 +1,376 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    background-color: #121212;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  .logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ff3c57;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #ff3c57;
+  }
+
+
+
+/* Hero Banner */
+.hero {
+    height: 100vh;
+    background: url('#') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .hero-content h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .hero-content h1 span {
+    color: #ff3c57;
+  }
+  
+  .hero-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #cccccc;
+  }
+  
+  .hero-buttons .btn {
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #ff3c57;
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    border-radius: 30px;
+    transition: background 0.3s;
+  }
+  
+  .hero-buttons .btn-secondary {
+    background-color: transparent;
+    border: 2px solid #ff3c57;
+  }
+  
+  .hero-buttons .btn:hover {
+    background-color: #e6324a;
+  }
+  
+  /* Keyframes for background image change */
+  @keyframes changeBackground {
+    0% {
+      background-image: url('#');
+    }
+    25% {
+      background-image: url('#');
+    }
+    50% {
+      background-image: url('#');
+    }
+    75% {
+      background-image: url('#');
+    }
+    100% {
+      background-image: url('#');
+    }
+  }
+
+  /* Features Section */
+.features {
+    background-color: #1e1e1e; /* Dark background */
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .features h2 {
+    font-size: 36px;
+    color: #ff3c57; /* Accent color */
+    margin-bottom: 30px;
+  }
+  
+  .feature-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between features */
+  }
+  
+  .feature {
+    background-color: #2a2a2a; /* Slightly lighter dark background */
+    border-radius: 10px;
+    padding: 20px;
+    width: 220px; /* Fixed width for uniformity */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+  }
+  
+  .feature:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+  }
+  
+  .icon {
+    font-size: 40px; /* Larger icon size */
+    margin-bottom: 10px;
+  }
+  
+  .feature h3 {
+    font-size: 24px;
+    color: #ffffff; /* White text for headings */
+    margin-bottom: 10px;
+  }
+  
+  .feature p {
+    font-size: 16px;
+    color: #cccccc; /* Light gray for description */
+  }
+  
+/* Highlighted Event Section */
+.highlighted-event {
+    background-color: #2a2a2a; /* Dark background */
+    padding: 50px 20px;
+    text-align: center;
+    margin: 40px 0; /* Space above and below the section */
+  }
+  
+  .highlighted-event h2 {
+    font-size: 36px;
+    color: #ff3c57; /* Accent color */
+    margin-bottom: 30px;
+  }
+  
+  .event-box {
+    background-color: #1e1e1e; /* Slightly darker box for contrast */
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+  }
+  
+  .event-box:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+  }
+  
+  .event-name {
+    font-size: 28px;
+    color: #ffffff; /* White text for event name */
+    margin-bottom: 15px;
+  }
+  
+  .event-date,
+  .event-club {
+    font-size: 18px;
+    color: #cccccc; /* Light gray for details */
+    margin-bottom: 10px;
+  }
+  
+  .register-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #ff3c57; /* Accent color */
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: background 0.3s;
+  }
+  
+  .register-btn:hover {
+    background-color: #e6324a; /* Darker shade on hover */
+  }
+
+  /* Featured Clubs Section */
+.featured-clubs {
+    background-color: #1e1e1e; /* Dark background */
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .featured-clubs h2 {
+    font-size: 36px;
+    color: #ff3c57; /* Accent color */
+    margin-bottom: 30px;
+  }
+  
+  .carousel {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Snap effect */
+    gap: 20px; /* Space between cards */
+  }
+  
+  .club-card {
+    background-color: #2a2a2a; /* Card background */
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px; /* Fixed width for cards */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    scroll-snap-align: start; /* Snap alignment */
+    transition: transform 0.3s;
+  }
+  
+  .club-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+  }
+  
+  .club-card img {
+    width: 100%; /* Responsive image */
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .club-card h3 {
+    font-size: 24px;
+    color: #ffffff; /* White text for club name */
+    margin-bottom: 10px;
+  }
+  
+  .club-card p {
+    font-size: 16px;
+    color: #cccccc; /* Light gray for description */
+  }
+
+  /* Gallery Section */
+.gallery {
+    background-color: #f9f9f9; /* Light background */
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .gallery h2 {
+    font-size: 36px;
+    color: #ff3c57; /* Accent color */
+    margin-bottom: 30px;
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between images */
+  }
+  
+  .gallery-item {
+    overflow: hidden; /* Hide overflow */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    transition: transform 0.3s;
+  }
+  
+  .gallery-item:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+  }
+  
+  .gallery-item img {
+    width: 100%; /* Responsive image */
+    height: auto; /* Maintain aspect ratio */
+    display: block; 
+  }
+/* Footer Section */
+.footer {
+    background-color: #333; /* Dark background */
+    color: #fff; /* White text */
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-around; /* Space between columns */
+    flex-wrap: wrap; /* Wrap on smaller screens */
+  }
+  
+  .footer-address,
+  .footer-links,
+  .footer-social {
+    flex: 1; /* Equal width for all sections */
+    min-width: 250px; /* Minimum width */
+    margin: 10px; /* Space around sections */
+  }
+  
+  .footer h3 {
+    color: #ff3c57; /* Accent color for headings */
+    margin-bottom: 15px;
+  }
+  
+  .footer p,
+  .footer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Remove bullet points */
+  }
+  
+  .footer ul li {
+    margin: 10px 0; /* Space between links */
+  }
+  
+  .footer ul li a {
+    color: #fff; /* White text for links */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s; /* Smooth transition */
+  }
+  
+  .footer ul li a:hover {
+    color: #ff3c57; /* Change color on hover */
+  }
+  
+  .footer-social .social-icons {
+    display: flex;
+    justify-content: center; /* Center social icons */
+  }
+  
+  .footer-social .social-icons a {
+    margin: 0 10px; /* Space between icons */
+    transition: transform 0.3s; /* Smooth transition for scaling */
+  }
+  
+  .footer-social .social-icons a img {
+    transition: filter 0.3s; /* Smooth transition for filter */
+  }
+  
+  .footer-social .social-icons a:hover img {
+    filter: brightness(0) invert(1); /* Change icon color on hover */
+    transform: scale(1.1); /* Slightly enlarge icon on hover */
+  }
+  
+  .footer-bottom {
+    margin-top: 20px; /* Space above copyright */
+    font-size: 14px; /* Smaller text */
+  }
