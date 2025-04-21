@@ -1,144 +1,128 @@
+<!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   Choose Your Clubs
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Choose Your Clubs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-   body {
+    body {
       font-family: 'Inter', sans-serif;
     }
   </style>
- </head>
- <body class="bg-[#b7b7b7] text-[#1a202c] min-h-screen p-6">
+</head>
+<body class="bg-[#b7b7b7] text-[#1a202c] min-h-screen p-6">
   <main class="max-w-7xl mx-auto">
-   <h1 class="font-extrabold text-3xl mb-1">
-    Choose Your Clubs
-   </h1>
-   <p class="text-lg mb-1">
-    Select the clubs you wish to join from the options below.
-   </p>
-   <p class="text-base mb-8 max-w-xl">
-    Joining clubs helps you network with peers, enhance your skills, and participate in exciting activities.
-   </p>
-   <form>
-    <div class="mb-6 max-w-md">
-     <label class="sr-only" for="search">
-      Search clubs
-     </label>
-     <div class="relative text-gray-500 focus-within:text-gray-700">
-      <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-       <i class="fas fa-search">
-       </i>
-      </span>
-      <input class="block w-full rounded-md border border-gray-400 bg-white py-2 pl-10 pr-3 text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="search" placeholder="Search clubs..." type="search"/>
-     </div>
-    </div>
-    <div class="flex items-center mb-6 max-w-4xl">
-     <label class="inline-flex items-center space-x-2 cursor-pointer">
-      <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox"/>
-      <span class="font-semibold text-base select-none">
-       Select All
-      </span>
-     </label>
-     <span class="ml-12 font-semibold text-base">
-      You have selected 0 clubs
-     </span>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
-     <!-- ACE CLUB -->
-     <label class="cursor-pointer rounded-lg border border-gray-400 bg-white p-4 flex flex-col space-y-2">
-      <div class="flex items-center space-x-3">
-       <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox"/>
-       <img alt="ACE CLUB logo with red background and white text ACE" aria-hidden="true" class="w-5 h-5" height="20" src="https://storage.googleapis.com/a1aa/image/40e6d477-a043-42e1-4943-b9cb53dd4a0d.jpg" width="20"/>
-       <span class="font-semibold text-base select-none">
-        ACE CLUB
-       </span>
+    <h1 class="font-extrabold text-3xl mb-1">Choose Your Clubs</h1>
+    <p class="text-lg mb-1">Select the clubs you wish to join from the options below.</p>
+    <p class="text-base mb-8 max-w-xl">Joining clubs helps you network with peers, enhance your skills, and participate in exciting activities.</p>
+
+    <form onsubmit="return savePreferences();">
+      <!-- Search -->
+      <div class="mb-6 max-w-md">
+        <label class="sr-only" for="search">Search clubs</label>
+        <div class="relative text-gray-500 focus-within:text-gray-700">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <i class="fas fa-search"></i>
+          </span>
+          <input
+            id="search"
+            type="search"
+            placeholder="Search clubs..."
+            class="block w-full rounded-md border border-gray-400 bg-white py-2 pl-10 pr-3 text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
       </div>
-      <p class="text-sm text-gray-800 max-w-xs">
-       Focuses on advanced coding challenges and competitive programming.
-      </p>
-     </label>
-     <!-- LANGUAGE NEST -->
-     <label class="cursor-pointer rounded-lg border border-gray-400 bg-white p-4 flex flex-col space-y-2">
-      <div class="flex items-center space-x-3">
-       <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox"/>
-       <img alt="LANGUAGE NEST logo black square with white text LANGUAGE NEST" aria-hidden="true" class="w-5 h-5" height="20" src="https://storage.googleapis.com/a1aa/image/c2d7880f-bbda-4733-d16e-dd32d6f80ca4.jpg" width="20"/>
-       <span class="font-semibold text-base select-none">
-        LANGUAGE NEST
-       </span>
+
+      <!-- Select All -->
+      <div class="flex items-center mb-6 max-w-4xl">
+        <label class="inline-flex items-center space-x-2 cursor-pointer">
+          <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox" />
+          <span class="font-semibold text-base select-none">Select All</span>
+        </label>
+        <span class="ml-12 font-semibold text-base">You have selected 0 clubs</span>
       </div>
-      <p class="text-sm text-gray-800 max-w-xs">
-       Dedicated to learning and practicing new languages and cultures.
-      </p>
-     </label>
-     <!-- GDG -->
-     <label class="cursor-pointer rounded-lg border border-gray-400 bg-white p-4 flex flex-col space-y-2">
-      <div class="flex items-center space-x-3">
-       <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox"/>
-       <img alt="GDG logo circle with yellow background and black text GDG" aria-hidden="true" class="w-5 h-5 rounded-full border border-yellow-600" height="20" src="https://storage.googleapis.com/a1aa/image/216ef5a2-39eb-4969-b547-0affd3da65a4.jpg" width="20"/>
-       <span class="font-semibold text-base select-none">
-        GDG
-       </span>
+
+      <!-- Clubs Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
+        <!-- Club Card Template -->
+        <label class="cursor-pointer rounded-lg border border-gray-400 bg-white p-4 flex flex-col space-y-2">
+          <div class="flex items-center space-x-3">
+            <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox" />
+            <img src="https://storage.googleapis.com/a1aa/image/40e6d477-a043-42e1-4943-b9cb53dd4a0d.jpg" alt="ACE CLUB" class="w-5 h-5" />
+            <span class="font-semibold text-base select-none">ACE CLUB</span>
+          </div>
+          <p class="text-sm text-gray-800 max-w-xs">Focuses on advanced coding challenges and competitive programming.</p>
+        </label>
+
+        <label class="cursor-pointer rounded-lg border border-gray-400 bg-white p-4 flex flex-col space-y-2">
+          <div class="flex items-center space-x-3">
+            <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox" />
+            <img src="https://storage.googleapis.com/a1aa/image/c2d7880f-bbda-4733-d16e-dd32d6f80ca4.jpg" alt="LANGUAGE NEST" class="w-5 h-5" />
+            <span class="font-semibold text-base select-none">LANGUAGE NEST</span>
+          </div>
+          <p class="text-sm text-gray-800 max-w-xs">Dedicated to learning and practicing new languages and cultures.</p>
+        </label>
+
+        <label class="cursor-pointer rounded-lg border border-gray-400 bg-white p-4 flex flex-col space-y-2">
+          <div class="flex items-center space-x-3">
+            <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox" />
+            <img src="https://storage.googleapis.com/a1aa/image/216ef5a2-39eb-4969-b547-0affd3da65a4.jpg" alt="GDG" class="w-5 h-5 rounded-full border border-yellow-600" />
+            <span class="font-semibold text-base select-none">GDG</span>
+          </div>
+          <p class="text-sm text-gray-800 max-w-xs">Google Developer Group focusing on tech talks and workshops.</p>
+        </label>
+
+        <label class="cursor-pointer rounded-lg border border-gray-400 bg-white p-4 flex flex-col space-y-2">
+          <div class="flex items-center space-x-3">
+            <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox" />
+            <img src="https://storage.googleapis.com/a1aa/image/5061f544-5917-4bca-e77f-e0777dc5a0d9.jpg" alt="ISTE CLUB" class="w-5 h-5 rounded" />
+            <span class="font-semibold text-base select-none">ISTE CLUB</span>
+          </div>
+          <p class="text-sm text-gray-800 max-w-xs">Promotes innovation and technical education among students.</p>
+        </label>
+
+        <label class="cursor-pointer rounded-lg border border-gray-400 bg-white p-4 flex flex-col space-y-2">
+          <div class="flex items-center space-x-3">
+            <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox" />
+            <img src="https://storage.googleapis.com/a1aa/image/8289a9c6-5d74-4509-4422-dce2abf35a8b.jpg" alt="IETE CLUB" class="w-5 h-5 rounded" />
+            <span class="font-semibold text-base select-none">IETE CLUB</span>
+          </div>
+          <p class="text-sm text-gray-800 max-w-xs">Encourages innovation and research in electronics, telecommunications, and IT fields.</p>
+        </label>
+
+        <label class="cursor-pointer rounded-lg border border-gray-400 bg-white p-4 flex flex-col space-y-2">
+          <div class="flex items-center space-x-3">
+            <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox" />
+            <img src="https://storage.googleapis.com/a1aa/image/4e5d737f-9d87-4a94-6580-f644b9c6a48e.jpg" alt="CODING CLUB" class="w-5 h-5 rounded" />
+            <span class="font-semibold text-base select-none">CODING CLUB</span>
+          </div>
+          <p class="text-sm text-gray-800 max-w-xs">A community for coding enthusiasts to collaborate and learn new skills.</p>
+        </label>
       </div>
-      <p class="text-sm text-gray-800 max-w-xs">
-       Google Developer Group focusing on tech talks and workshops.
-      </p>
-     </label>
-     <!-- ISTE CLUB -->
-     <label class="cursor-pointer rounded-lg border border-gray-400 bg-white p-4 flex flex-col space-y-2">
-      <div class="flex items-center space-x-3">
-       <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox"/>
-       <img alt="ISTE CLUB logo green square with white text ISTE CLUB" aria-hidden="true" class="w-5 h-5 rounded" height="20" src="https://storage.googleapis.com/a1aa/image/5061f544-5917-4bca-e77f-e0777dc5a0d9.jpg" width="20"/>
-       <span class="font-semibold text-base select-none">
-        ISTE CLUB
-       </span>
+
+      <!-- Buttons -->
+      <div class="mt-10 flex space-x-4 max-w-md">
+        <button type="button"
+          class="px-6 py-2 rounded-md border border-gray-500 text-gray-700 font-semibold hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          Cancel
+        </button>
+        <button type="submit"
+          class="px-6 py-2 rounded-md bg-indigo-500 text-white font-semibold hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          Save Preferences
+        </button>
       </div>
-      <p class="text-sm text-gray-800 max-w-xs">
-       Promotes innovation and technical education among students.
-      </p>
-     </label>
-     <!-- IETE CLUB -->
-     <label class="cursor-pointer rounded-lg border border-gray-400 bg-white p-4 flex flex-col space-y-2">
-      <div class="flex items-center space-x-3">
-       <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox"/>
-       <img alt="IETE CLUB logo dark blue square with white text IETE CLUB" aria-hidden="true" class="w-5 h-5 rounded" height="20" src="https://storage.googleapis.com/a1aa/image/8289a9c6-5d74-4509-4422-dce2abf35a8b.jpg" width="20"/>
-       <span class="font-semibold text-base select-none">
-        IETE CLUB
-       </span>
-      </div>
-      <p class="text-sm text-gray-800 max-w-xs">
-       Encourages innovation and research in electronics, telecommunications, and IT fields.
-      </p>
-     </label>
-     <!-- CODING CLUB -->
-     <label class="cursor-pointer rounded-lg border border-gray-400 bg-white p-4 flex flex-col space-y-2">
-      <div class="flex items-center space-x-3">
-       <input class="form-checkbox h-5 w-5 text-indigo-600" type="checkbox"/>
-       <img alt="CODING CLUB logo blue rounded rectangle with white text CODING CLUB" aria-hidden="true" class="w-5 h-5 rounded" height="20" src="https://storage.googleapis.com/a1aa/image/4e5d737f-9d87-4a94-6580-f644b9c6a48e.jpg" width="20"/>
-       <span class="font-semibold text-base select-none">
-        CODING CLUB
-       </span>
-      </div>
-      <p class="text-sm text-gray-800 max-w-xs">
-       A community for coding enthusiasts to collaborate and learn new skills.
-      </p>
-     </label>
-    </div>
-    <div class="mt-10 flex space-x-4 max-w-md">
-     <button class="px-6 py-2 rounded-md border border-gray-500 text-gray-700 font-semibold hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500" type="button">
-      Cancel
-     </button>
-     <button class="px-6 py-2 rounded-md bg-indigo-500 text-white font-semibold hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" type="submit">
-      Save Preferences
-     </button>
-    </div>
-   </form>
+    </form>
   </main>
- </body>
+
+  <script>
+    function savePreferences() {
+      // You could collect selected checkboxes here if needed
+      window.location.href = 'index.html'; // Redirect to home page
+      return false; // Prevent form from submitting normally
+    }
+  </script>
+</body>
 </html>
