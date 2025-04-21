@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Sign Up - Conference</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-black text-white min-h-screen flex items-center justify-center px-4">
+
+  <!-- Sign Up Card -->
+  <div class="relative max-w-sm w-full bg-gradient-to-br from-black via-gray-900 to-gray-800 rounded-3xl shadow-2xl overflow-hidden">
+    <img class="absolute top-0 left-0 w-28 h-28 opacity-30 pointer-events-none select-none" src="https://storage.googleapis.com/a1aa/image/3cc4be52-df9b-454f-00ac-0ff453016c42.jpg" alt="" />
+    <img class="absolute bottom-0 right-0 w-32 h-32 opacity-30 pointer-events-none select-none" src="https://storage.googleapis.com/a1aa/image/a70d595f-bc5d-49cb-3a2a-a8e3624faad4.jpg" alt="" />
+    
+    <div class="relative z-10 p-8">
+      <h1 class="text-3xl font-extrabold mb-2 text-red-600 tracking-wide">SIGN UP</h1>
+      <p class="text-gray-300 mb-6 text-sm">Create your account to access the conference portal.</p>
+
+      <form id="signupForm" onsubmit="return signup();" class="space-y-5" novalidate>
+        <div>
+          <label class="block text-sm font-semibold mb-1" for="newUsername">Username</label>
+          <input autocomplete="username" class="w-full rounded-lg bg-gray-900 border border-gray-700 focus:border-red-600 focus:ring-2 focus:ring-red-600 text-white px-3 py-2 placeholder-gray-500 transition text-sm" id="newUsername" name="newUsername" placeholder="Choose a username" required type="text"/>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1" for="newPassword">Password</label>
+          <input autocomplete="new-password" class="w-full rounded-lg bg-gray-900 border border-gray-700 focus:border-red-600 focus:ring-2 focus:ring-red-600 text-white px-3 py-2 placeholder-gray-500 transition text-sm" id="newPassword" name="newPassword" placeholder="Create a password" required type="password"/>
+        </div>
+
+        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 transition font-extrabold text-white rounded-lg py-2 text-base tracking-wide shadow-lg flex justify-center items-center">
+          <i class="fas fa-user-plus mr-2 text-sm"></i>
+          Sign Up
+        </button>
+      </form>
+
+      <p class="mt-6 text-center text-gray-400 text-xs">
+        Already have an account?
+        <a class="text-red-600 font-semibold hover:text-red-500" href="signin.html">Sign In</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- JavaScript Redirect -->
+  <script>
+    function signup() {
+      // Simulate signup success
+      window.location.href = "prefences.html"; // Redirect after "signup"
+      return false; // Prevent actual form submission
+    }
+  </script>
+
+</body>
+</html>
