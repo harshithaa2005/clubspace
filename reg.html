@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubSpace - Club Registration</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #800080; /* Violet background */
+            color: #ff3c58;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #ff3c58;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+        nav .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff3c58;
+        }
+        nav .nav-links a {
+            color: #ff3c58;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 14px; /* Reduced font size */
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        nav .nav-links a:hover {
+            background-color: #ff3c58;
+            color: white;
+            border-radius: 5px;
+        }
+
+        /* Main Container */
+        .container {
+            margin-top: 80px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .form-container {
+            background-color: #5a2d82; /* Darker Violet for form background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px; /* Reduced form width */
+            margin: auto;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            background-color: #ff3c58;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px; /* Reduced button text size */
+            animation: pulse 2s infinite;
+        }
+
+        button:hover {
+            background-color: #d6334f;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Pulse animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            color: green;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .form-container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">ClubSpace</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Clubs</a>
+            <a href="#">Events</a>
+            <a href="#">Contact</a>
+            <a href="#">Login</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="form-container">
+            <h2>Register for a Club</h2>
+            <form id="clubRegistrationForm">
+                <!-- Club Name Dropdown -->
+                <select id="clubName" name="clubName" required>
+                    <option value="">Select Club</option>
+                    <option value="Ace Club">Ace Club</option>
+                    <option value="CSI">CSI</option>
+                    <option value="Coding Club">Coding Club</option>
+                    <option value="Lolo Band">Lolo Band</option>
+                    <option value="ISTE">ISTE</option>
+                    <option value="Language Nest">Language Nest</option>
+                </select>
+
+                <!-- User Name -->
+                <input type="text" id="userName" name="userName" placeholder="Your Name" required />
+
+                <!-- Email -->
+                <input type="email" id="userEmail" name="userEmail" placeholder="Your Email" required />
+
+                <!-- Phone Number -->
+                <input type="tel" id="userPhone" name="userPhone" placeholder="Your Phone Number" required />
+
+                <!-- College ID -->
+                <input type="text" id="collegeId" name="collegeId" placeholder="College ID" required />
+
+                <!-- Year & Department -->
+                <input type="text" id="yearDepartment" name="yearDepartment" placeholder="Year & Department" required />
+
+                <!-- Why Join -->
+                <textarea id="whyJoin" name="whyJoin" placeholder="Why do you want to join?" required></textarea>
+
+                <!-- Agree Checkbox -->
+                <label>
+                    <input type="checkbox" id="terms" required /> I agree to the terms and conditions.
+                </label>
+
+                <!-- Submit Button -->
+                <button type="submit">Register</button>
+            </form>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                Successfully Registered! 🎉
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Form submission handler
+        const form = document.getElementById('clubRegistrationForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from actually submitting
+
+            // Show success message
+            successMessage.style.display = 'block';
+
+            // Clear the form
+            form.reset();
+
+            // Optionally, you can add code to submit data to a server here using AJAX.
+        });
+    </script>
+
+</body>
+</html>
+
