@@ -95,7 +95,7 @@
   
   /* Features Section */
   .features {
-    background-color: #2f0337;
+    background-color: #300138;
     padding: 50px 20px;
     text-align: center;
   }
@@ -114,7 +114,7 @@
   }
   
   .feature {
-    background-color:rgb(0, 0, 7);
+    background-color:rgb(43, 1, 51);
     border-radius: 10px;
     padding: 20px;
     width: 220px;
@@ -157,7 +157,7 @@
   }
   
   .event-box {
-    background-color:rgb(0, 0, 0);
+    background-color:rgb(43, 1, 51);
     border-radius: 10px;
     padding: 30px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
@@ -198,7 +198,7 @@
   
   /* Featured Clubs Section */
   .featured-clubs {
-    background-color:rgb(12, 2, 14);
+    background-color:rgb(43, 1, 51);
     padding: 50px 20px;
     text-align: center;
   }
@@ -217,7 +217,7 @@
   }
   
   .club-card {
-    background-color:rgb(0, 0, 5);
+    background-color:rgb(43, 1, 51);
     border-radius: 10px;
     padding: 20px;
     width: 300px;
@@ -305,7 +305,7 @@
   
   /* Footer Section */
   .footer {
-    background-color:#2f0337;
+    background-color:#48014b;
     color: #ffffff;
     padding: 40px 20px;
     text-align: center;
