@@ -1,361 +1,170 @@
-/* Reset & Base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    color: #f2f2f2;
-    background-color: #48014b;
-  }
-  
-  /* Navbar */
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    background-color: rgba(0, 0, 0, 0.9);
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-  }
-  
-  .logo {
-    font-size: 32px;
-    font-weight: bold;
-    color: #ff3c57;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-  }
-  
-  .nav-links a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s;
-  }
-  
-  .nav-links a:hover {
-    color: #ff3c57;
-  }
-  
-  /* Hero Banner */
-  .hero {
-    height: 100vh;
-    background: url('ig.jpeg') center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 20px;
-  }
-  
-  .hero-content h1 {
-    font-size: 50px;
-    margin-bottom: 20px;
-    color: #ffffff;
-  }
-  
-  .hero-content h1 span {
-    color: #ff3c57;
-  }
-  
-  .hero-content p {
-    font-size: 20px;
-    margin-bottom: 30px;
-    color: #dcdcdc;
-  }
-  
-  .hero-buttons .btn {
-    padding: 12px 25px;
-    font-size: 16px;
-    background-color: #ff3c57;
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-    border-radius: 30px;
-    transition: background 0.3s;
-  }
-  
-  .hero-buttons .btn-secondary {
-    background-color: transparent;
-    border: 2px solid #ff3c57;
-  }
-  
-  .hero-buttons .btn:hover {
-    background-color: #e6324a;
-  }
-  
-  /* Features Section */
-  .features {
-    background-color: #48014b;
-    padding: 50px 20px;
-    text-align: center;
-  }
-  
-  .features h2 {
-    font-size: 36px;
-    color: #ff3c57;
-    margin-bottom: 30px;
-  }
-  
-  .feature-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .feature {
-    background-color:#ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    width: 220px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s;
-  }
-  
-  .feature:hover {
-    transform: translateY(-5px);
-  }
-  
-  .icon {
-    font-size: 40px;
-    margin-bottom: 10px;
-  }
-  
-  .feature h3 {
-    font-size: 24px;
-    color: #050000;
-    margin-bottom: 10px;
-  }
-  
-  .feature p {
-    font-size: 16px;
-    color: #070000;
-  }
-  
-  /* Highlighted Event Section */
-  .highlighted-event {
-    background-color: #48014b;
-    padding: 50px 20px;
-    text-align: center;
-    margin: 40px 0;
-  }
-  
-  .highlighted-event h2 {
-    font-size: 36px;
-    color: #ff3c57;
-    margin-bottom: 30px;
-  }
-  
-  .event-box {
-    background-color:##2a012c;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s;
-  }
-  
-  .event-box:hover {
-    transform: translateY(-5px);
-  }
-  
-  .event-name {
-    font-size: 28px;
-    color: #faf8f8;
-    margin-bottom: 15px;
-  }
-  
-  .event-date,
-  .event-club {
-    font-size: 18px;
-    color: #ffffff;
-    margin-bottom: 10px;
-  }
-  
-  .register-btn {
-    display: inline-block;
-    padding: 12px 25px;
-    font-size: 16px;
-    background-color: #ff3c57;
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    transition: background 0.3s;
-  }
-  
-  .register-btn:hover {
-    background-color: #e6324a;
-  }
-  
-  /* Featured Clubs Section */
-  .featured-clubs {
-    background-color:#48014b;
-    padding: 50px 20px;
-    text-align: center;
-  }
-  
-  .featured-clubs h2 {
-    font-size: 36px;
-    color: #ff3c57;
-    margin-bottom: 30px;
-  }
-  
-  .carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 20px;
-  }
-  
-  .club-card {
-    background-color:#ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    width: 300px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    scroll-snap-align: start;
-    transition: transform 0.3s;
-  }
-  
-  .club-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .club-card img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .club-card h3 {
-    font-size: 24px;
-    color: #050000;
-    margin-bottom: 10px;
-  }
-  
-  .club-card p {
-    font-size: 16px;
-    color: #070000;
-  }
-  
-  /* Gallery Section */
-  .gallery {
-    background-color: #48014b;
-    padding: 50px 20px;
-    text-align: center;
-  }
-  
-  .gallery h2 {
-    font-size: 36px;
-    color: #ff3c57;
-    margin-bottom: 30px;
-    font-weight: bold;
-  }
-  
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 25px;
-  }
-  
-  .gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 15px;
-    height: 250px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    cursor: pointer;
-  }
-  
-  .gallery-item.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .gallery-item:hover {
-    transform: scale(1.03);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
-  }
-  
-  .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 15px;
-  }
-  
-  .caption,
-  .gallery-item::after,
-  .gallery-item:hover::after {
-    display: none !important;
-  }
-  
-  /* Footer Section */
-  .footer {
-    background-color:#48014b;
-    color: #ffffff;
-    padding: 40px 20px;
-    text-align: center;
-  }
-  
-  .footer-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  
-  .footer-address,
-  .footer-links,
-  .footer-social {
-    flex: 1;
-    min-width: 250px;
-    margin: 10px;
-  }
-  
-  .footer h3 {
-    color: #ff3c57;
-    margin-bottom: 15px;
-  }
-  
-  .footer p,
-  .footer ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  
-  .footer ul li {
-    margin: 10px 0;
-  }
-  
-  .footer ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  .footer ul li a:hover {
-    color: #ff3c57;
-  }
-  
-  .footer-social .social-icons {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .footer-social .social-icons a {
-    margin: 0 10px;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* General Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #48014b;
+      color: #fff;
+      line-height: 1.6;
+    }
+    /* Navbar */
+    .custom-navbar {
+      background-color: #010111;
+      padding: 15px 30px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+    .custom-navbar .navbar-brand {
+      color: #fff;
+font-weight: 800;
+      font-size: 26px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .custom-navbar .nav-link {
+      color: #ccc;
+      font-weight: 500;
+      margin-left: 20px;
+      transition: 0.3s;
+    }
+    .custom-navbar .nav-link:hover {
+      color: #e91e63;
+    }
+    /* Contact Section */
+    .contact-area {
+      background-color: #48014b;
+      color: #fff;
+      padding: 60px 0;
+    }
+    .contact-area .title h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .contact-area .title p {
+      color: #bbb;
+      font-size: 16px;
+    }
+    .form-area input,
+    .form-area select,
+    .form-area textarea {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 14px 18px;
+      border-radius: 8px;
+      width: 100%;
+      margin-bottom: 20px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .form-area input::placeholder,
+    .form-area textarea::placeholder {
+      color: #aaa;
+    }
+    .form-area input:focus,
+    .form-area select:focus,
+    .form-area textarea:focus {
+      outline: none;
+      border-color: #e91e63;
+      box-shadow: 0 0 8px rgba(233, 30, 99, 0.5);
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+    .genric-btn.primary {
+      background: #e91e63;
+      border: none;
+      color: #fff;
+      padding: 12px 35px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 16px;
+      transition: 0.3s;    }
+
+    .genric-btn.primary:hover {
+      background: #d81b60;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+    }
+    .confirmation-message {
+      margin-top: 15px;
+      color: #4caf50;
+      display: none;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg custom-navbar">
+    <a class="navbar-brand" href="#">ClubSpace</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" style="color: #fff;"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+        <li class="nav-item"><a class="nav-link" href="club.html">Club</a></li>
+        <li class="nav-item"><a class="nav-link" href="signin.html">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Contact Form Section -->
+  <section class="contact-area section-gap">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="menu-content pb-60 col-lg-8">
+          <div class="title text-center">
+            <h1 class="mb-10">Contact Us</h1>
+            <p>We’d love to hear from you! Whether you have questions, feedback, or want to get involved, reach out below.</p>
+          </div>
+        </div>
+      </div>
+      <form id="contactForm" class="form-area contact-form">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 form-group">
+            <input name="name" placeholder="Enter your name"
+                   onfocus="this.placeholder=''" onblur="this.placeholder='Enter your name'"
+                   class="common-input form-control" required type="text">
+            <input name="email" placeholder="Enter email address"
+                   onfocus="this.placeholder=''" onblur="this.placeholder='Enter email address'"
+                   class="common-input form-control" required type="email">
+            <select name="subject" class="common-input form-control" required>
+              <option value="">Select Subject</option>
+              <option value="general">General Inquiry</option>
+              <option value="event">Event Question</option>
+              <option value="club">Club Registration</option>
+            </select>
+            <textarea class="common-textarea form-control" name="message"
+                      placeholder="Enter Message" required></textarea>
+
+            <button class="genric-btn primary mt-3" type="submit">Send Message</button>
+            <div class="confirmation-message" id="confirmationMessage">
+              Thank you! We'll get back to you shortly.
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!-- Script -->
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      document.getElementById("confirmationMessage").style.display = "block";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
