@@ -139,9 +139,9 @@ body {
 
 .club-cards {
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center;
 }
 
 .single-club {
