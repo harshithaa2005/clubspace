@@ -8,11 +8,14 @@
 /* Body */
 body {
   font-family: Arial, sans-serif;
-  background-color: #8B008B; /* Purple background */
   color: white;
   line-height: 1.6;
   padding: 0;
   margin: 0;
+  background-image: url('g1.jpg'); /* Set the background image */
+  background-size: cover; /* Make the background cover the entire screen */
+  background-position: center; /* Center the background image */
+  background-attachment: fixed; /* Fix the background image so it doesn't scroll with the page */
 }
 
 /* Navbar */
@@ -74,13 +77,28 @@ body {
 
 /* Hero Section */
 .hero {
-  background-color: #4a148c;
+  position: relative;
+  background-image: url('g1.jpg'); /* Set the background image */
+  background-size: cover; /* Make sure the image covers the entire section */
+  background-position: center; /* Center the image */
   padding: 100px 0;
   text-align: center;
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adds a dark overlay */
+  z-index: -1; /* Makes sure the overlay is behind the text */
+}
+
 .hero h1 {
   font-size: 3rem;
+  color: white;
 }
 
 .hero span {
@@ -90,6 +108,7 @@ body {
 .hero p {
   margin: 20px 0;
   font-size: 1.2rem;
+  color: white; /* Ensures text stands out */
 }
 
 .hero .primary-btn {
@@ -108,26 +127,27 @@ body {
 
 /* Hero Image Styling */
 .hero-image {
-  margin-top: 30px;  /* Adds spacing between the text and the image */
-  text-align: center;  /* Centers the image */
+  margin-top: 30px;
+  text-align: center;
 }
 
 .hero-image img {
-  width: 80%;  /* Makes the image width responsive */
-  max-width: 600px;  /* Limits the image size to 600px */
-  height: auto;  /* Keeps the aspect ratio of the image intact */
-  border-radius: 10px;  /* Adds rounded corners to the image */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);  /* Adds a subtle shadow around the image */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;  /* Smooth transition for hover effects */
+  width: 80%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hero-image img:hover {
-  transform: scale(1.05);  /* Slightly enlarges the image on hover */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);  /* Enhances the shadow on hover */
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 /* Clubs Section */
 .club-area {
+  background-color: #8B008B; /* Purple background */
   padding: 50px 30px;
   text-align: center;
 }
@@ -135,6 +155,7 @@ body {
 .club-area h2 {
   font-size: 2.5rem;
   margin-bottom: 30px;
+  color: white; /* White text color */
 }
 
 .club-cards {
@@ -145,7 +166,7 @@ body {
 }
 
 .single-club {
-  background-color: white; /* White background for each club box */
+  background-color: white;
   padding: 20px;
   width: 280px;
   text-align: center;
@@ -174,6 +195,7 @@ body {
 .single-club p {
   font-size: 1rem;
   margin-bottom: 20px;
+  color: black;
 }
 
 .single-club .genric-btn {
@@ -191,7 +213,7 @@ body {
 
 /* Footer (Contact Section) */
 footer.contact {
-  background-color: #8B008B; /* Purple footer */
+  background-color: #8B008B;
   padding: 30px 0;
   text-align: center;
 }
@@ -199,8 +221,10 @@ footer.contact {
 footer.contact h2 {
   font-size: 2rem;
   margin-bottom: 15px;
+  color: white;
 }
 
 footer.contact p {
   font-size: 1rem;
+  color: white;
 }
