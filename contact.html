@@ -27,7 +27,7 @@
     }
     .custom-navbar .navbar-brand {
       color: #fff;
-font-weight: 800;
+      font-weight: 800;
       font-size: 26px;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -40,6 +40,18 @@ font-weight: 800;
     }
     .custom-navbar .nav-link:hover {
       color: #e91e63;
+    }
+    .back-btn {
+      background-color: #e91e63;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .back-btn:hover {
+      background-color: #d81b60;
     }
     /* Contact Section */
     .contact-area {
@@ -88,8 +100,8 @@ font-weight: 800;
       border-radius: 30px;
       font-weight: bold;
       font-size: 16px;
-      transition: 0.3s;    }
-
+      transition: 0.3s;    
+    }
     .genric-btn.primary:hover {
       background: #d81b60;
       transform: translateY(-2px);
@@ -117,9 +129,13 @@ font-weight: 800;
         <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
         <li class="nav-item"><a class="nav-link" href="club.html">Club</a></li>
         <li class="nav-item"><a class="nav-link" href="signin.html">Login</a></li>
-      </ul>
-    </div>
+        <li>
+      <!-- Back Button -->
+      <button class="back-btn" onclick="window.history.back();">← Back</button>
+    </div></li>
   </nav>
+  </li>
+
   <!-- Contact Form Section -->
   <section class="contact-area section-gap">
     <div class="container">
@@ -158,6 +174,7 @@ font-weight: 800;
       </form>
     </div>
   </section>
+
   <!-- Script -->
   <script>
     document.getElementById("contactForm").addEventListener("submit", function (e) {
