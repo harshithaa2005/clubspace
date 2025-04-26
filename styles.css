@@ -1,14 +1,29 @@
 /* Basic styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
+* {
+  box-sizing: border-box; /* Ensures all elements include padding/border in their width/height */
+}
+
+body, html {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Navbar */
 .navbar {
   background-color: #333;
   color: white;
-  padding: 10px 20px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-container {
@@ -25,112 +40,174 @@ body {
 
 .nav-links li {
   display: inline;
-  margin-right: 20px;
+  margin-right: 30px;
 }
 
 .nav-links a {
   color: white;
-  text-decoration: none;
+  font-size: 1.1em;
   font-weight: bold;
+  transition: color 0.3s ease;
 }
 
+.nav-links a:hover {
+  color: #f1c40f; /* Gold color on hover */
+}
+
+/* Hero Section */
 .hero {
-  background-color: #f1f1f1;
+  background-color: #8B008B; /* Purple background */
   text-align: center;
-  padding: 50px 0;
+  padding: 80px 20px;
+  background-image: url('g1.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .hero h1 {
-  font-size: 2.5em;
+  font-size: 3em;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero p {
   font-size: 1.2em;
   margin: 20px 0;
+  line-height: 1.6;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .primary-btn {
   background-color: #007bff;
   color: white;
-  padding: 10px 20px;
+  padding: 15px 30px;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 30px;
   font-weight: bold;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 20px;
 }
 
 .primary-btn:hover {
   background-color: #0056b3;
+  transform: translateY(-3px); /* Hover lift effect */
 }
 
+/* Club Area */
 .club-area {
-  padding: 40px 20px;
+  padding: 60px 20px;
   text-align: center;
+  background-color: #8B008B;
 }
 
 .club-area h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  font-weight: bold;
 }
 
 .club-cards {
   display: flex;
-  justify-content: space-between; /* Space between the clubs */
-  align-items: center; /* Center align the items vertically */
-  flex-wrap: nowrap; /* Ensure the items stay in a single line */
-  gap: 20px; /* Optional: add some space between each card */
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap; /* Ensures cards wrap on smaller screens */
 }
 
 .single-club {
-  width: 200px; /* Adjust the width as needed */
+  width: 280px;
+  background-color: #fff;
+  padding: 20px;
   text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.single-club:hover {
+  transform: translateY(-5px); /* Card lift effect */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .single-club img {
-  width: 100%; /* Ensure the images fill their container */
+  width: 100%;
   height: auto;
-  margin-bottom: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .single-club h4 {
-  font-size: 1.1em;
+  font-size: 1.4em;
   margin-bottom: 10px;
+  color: #333;
 }
 
 .single-club p {
-  font-size: 0.9em;
+  font-size: 1em;
   margin-bottom: 15px;
+  color: #666;
 }
 
 .genric-btn {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 12px 24px;
   background-color: #28a745;
   color: white;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 30px;
   font-weight: bold;
-}
-
-.genric-btn.primary {
-  background-color: #007bff;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .genric-btn:hover {
-  background-color: #0056b3;
+  background-color: #218838;
+  transform: translateY(-3px); /* Hover effect for buttons */
 }
 
+/* Contact Section */
 .contact {
-  background-color: #333;
+  background-color: #8B008B;
   color: white;
   text-align: center;
-  padding: 20px 0;
+  padding: 40px 20px;
 }
 
 .contact h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .contact p {
-  font-size: 1em;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .club-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .single-club {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: 2.2em;
+  }
+
+  .primary-btn {
+    font-size: 1em;
+    padding: 12px 25px;
+  }
 }
