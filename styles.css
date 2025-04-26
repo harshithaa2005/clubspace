@@ -1,98 +1,206 @@
-/* Club Area */
-.club-area {
-  padding: 60px 20px;
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #8B008B; /* Purple background */
+  color: white;
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+}
+
+/* Navbar */
+.navbar {
+  background-color: black;
+  padding: 15px 30px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.navbar .navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar .nav-links li {
+  margin: 0;
+}
+
+.navbar .nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+}
+
+.navbar .back-button-container {
+  margin-left: auto;
+}
+
+.navbar .back-btn {
+  background-color: #e91e63;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.navbar .back-btn:hover {
+  background-color: #d81b60;
+}
+
+/* Hero Section */
+.hero {
+  background-color: #4a148c;
+  padding: 100px 0;
   text-align: center;
-  background-color: #8B008B;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero span {
+  color: #e91e63;
+}
+
+.hero p {
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+
+.hero .primary-btn {
+  background-color: #e91e63;
+  padding: 10px 25px;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.hero .primary-btn:hover {
+  background-color: #d81b60;
+}
+
+/* Hero Image Styling */
+.hero-image {
+  margin-top: 30px;  /* Adds spacing between the text and the image */
+  text-align: center;  /* Centers the image */
+}
+
+.hero-image img {
+  width: 80%;  /* Makes the image width responsive */
+  max-width: 600px;  /* Limits the image size to 600px */
+  height: auto;  /* Keeps the aspect ratio of the image intact */
+  border-radius: 10px;  /* Adds rounded corners to the image */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);  /* Adds a subtle shadow around the image */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;  /* Smooth transition for hover effects */
+}
+
+.hero-image img:hover {
+  transform: scale(1.05);  /* Slightly enlarges the image on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);  /* Enhances the shadow on hover */
+}
+
+/* Clubs Section */
+.club-area {
+  padding: 50px 30px;
+  text-align: center;
 }
 
 .club-area h2 {
-  font-size: 2.5em;
-  margin-bottom: 40px;
-  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
 }
 
 .club-cards {
   display: flex;
-  justify-content: space-between;
-  gap: 20px; /* Reduced gap between the cards */
-  flex-wrap: wrap; /* Ensures cards wrap on smaller screens */
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
 .single-club {
-  width: 220px; /* Reduced width of the club boxes */
-  background-color: #fff;
-  padding: 15px; /* Reduced padding inside the boxes */
+  background-color: white; /* White background for each club box */
+  padding: 20px;
+  width: 280px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  margin-bottom: 20px; /* Added margin to space out cards when they wrap */
 }
 
 .single-club:hover {
-  transform: translateY(-5px); /* Card lift effect */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .single-club img {
   width: 100%;
   height: auto;
+  margin-bottom: 20px;
   border-radius: 8px;
-  margin-bottom: 15px; /* Reduced margin for a tighter layout */
 }
 
 .single-club h4 {
-  font-size: 1.2em; /* Reduced font size */
-  margin-bottom: 8px; /* Reduced margin */
-  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
 
 .single-club p {
-  font-size: 0.9em; /* Reduced font size */
-  margin-bottom: 12px; /* Reduced margin */
-  color: #666;
+  font-size: 1rem;
+  margin-bottom: 20px;
 }
 
-.genric-btn {
-  display: inline-block;
-  padding: 10px 20px; /* Reduced button padding */
-  background-color: #28a745;
+.single-club .genric-btn {
+  background-color: #e91e63;
   color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 16px;
   text-decoration: none;
-  border-radius: 30px;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.genric-btn:hover {
-  background-color: #218838;
-  transform: translateY(-3px); /* Hover effect for buttons */
+.single-club .genric-btn:hover {
+  background-color: #d81b60;
 }
 
-/* Responsive Design for Mobile */
-@media (max-width: 768px) {
-  .navbar-container {
-    flex-direction: column;
-    text-align: center;
-  }
+/* Footer (Contact Section) */
+footer.contact {
+  background-color: #8B008B; /* Purple footer */
+  padding: 30px 0;
+  text-align: center;
+}
 
-  .club-cards {
-    flex-direction: column;
-    align-items: center;
-  }
+footer.contact h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
 
-  .single-club {
-    width: 90%; /* Makes the club boxes fill most of the width on smaller screens */
-    margin-bottom: 20px;
-  }
-
-  .hero h1 {
-    font-size: 2.2em;
-  }
-
-  .primary-btn {
-    font-size: 1em;
-    padding: 12px 25px;
-  }
+footer.contact p {
+  font-size: 1rem;
 }
