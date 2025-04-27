@@ -1,21 +1,44 @@
-/* General Reset */
-* {
+/* Normalize CSS */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body */
+html {
+  font-size: 100%; /* Establish a base font size */
+}
+
 body {
   font-family: Arial, sans-serif;
   color: white;
   line-height: 1.6;
-  padding: 0;
-  margin: 0;
-  background-image: url('g1.jpg'); /* Set the background image */
-  background-size: cover; /* Make the background cover the entire screen */
-  background-position: center; /* Center the background image */
-  background-attachment: fixed; /* Fix the background image so it doesn't scroll with the page */
+  background-image: url('g1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal; /* Reset heading font weight */
+}
+
+ul, ol {
+  list-style: none; /* Remove default list styles */
+}
+
+a {
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Ensure links inherit the color of the parent element */
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 /* Navbar */
@@ -42,7 +65,6 @@ body {
 }
 
 .navbar .nav-links {
-  list-style: none;
   display: flex;
   gap: 20px;
 }
@@ -52,9 +74,8 @@ body {
 }
 
 .navbar .nav-links a {
-  text-decoration: none;
-  color: #fff;
   font-size: 16px;
+  color: #fff;
 }
 
 .navbar .back-button-container {
@@ -68,7 +89,7 @@ body {
   border-radius: 4px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .navbar .back-btn:hover {
@@ -78,9 +99,9 @@ body {
 /* Hero Section */
 .hero {
   position: relative;
-  background-image: url('g1.jpg'); /* Set the background image */
-  background-size: cover; /* Make sure the image covers the entire section */
-  background-position: center; /* Center the image */
+  background-image: url('g1.jpg');
+  background-size: cover;
+  background-position: center;
   padding: 100px 0;
   text-align: center;
 }
@@ -92,8 +113,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Adds a dark overlay */
-  z-index: -1; /* Makes sure the overlay is behind the text */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }
 
 .hero h1 {
@@ -108,7 +129,7 @@ body {
 .hero p {
   margin: 20px 0;
   font-size: 1.2rem;
-  color: white; /* Ensures text stands out */
+  color: white;
 }
 
 .hero .primary-btn {
@@ -147,7 +168,7 @@ body {
 
 /* Clubs Section */
 .club-area {
-  background-color: #8B008B; /* Purple background */
+  background-color: #8B008B;
   padding: 50px 30px;
   text-align: center;
 }
@@ -155,7 +176,7 @@ body {
 .club-area h2 {
   font-size: 2.5rem;
   margin-bottom: 30px;
-  color: white; /* White text color */
+  color: white;
 }
 
 .club-cards {
@@ -167,36 +188,36 @@ body {
 
 .single-club {
   background-color: white;
-  padding: 10px; /* Reduced padding */
+  padding: 10px;
   width: 280px;
   text-align: center;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-height: 300px; /* Set a maximum height */
-  overflow: hidden; /* Hide overflow content */
+  max-height: 300px;
+  overflow: hidden;
 }
 
 .single-club h4 {
   font-size: 1.5rem;
-  margin-bottom: 5px; /* Reduced margin */
+  margin-bottom: 5px;
 }
 
 .single-club p {
-  font-size: 0.9rem; /* Reduced font size */
-  margin-bottom: 5px; /* Reduced margin */
+  font-size: 0.9rem;
+  margin-bottom: 5px;
   color: black;
 }
 
 .single-club .genric-btn {
-  background-color: #e91e63; /* Bright background color */
-  color: white; /* White text color for contrast */
-  padding: 8px 16px; /* Adjusted padding for the button */
+  background-color: #e91e63;
+  color: white;
+  padding: 8px 16px;
   border-radius: 25px;
   font-size: 16px;
   text-decoration: none;
-  display: inline-block; /* Ensure it behaves like a button */
-  margin-top: 10px; /* Add some space above the button */
+  display: inline-block;
+  margin-top: 10px;
 }
 
 /* Footer (Contact Section) */
