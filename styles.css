@@ -193,9 +193,9 @@ body {
 }
 
 .single-club img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 20px;
+  width: 60%; /* Adjusted width to make the image smaller */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 10px; /* Reduced margin */
   border-radius: 8px;
 }
 
