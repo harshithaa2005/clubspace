@@ -4,7 +4,138 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HA Club</title>
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #640164;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #000;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+
+    .nav-links li {
+      display: inline-block;
+    }
+
+    .nav-links a, .back-btn {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .back-btn:hover, .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background-color: #f3f3f3;
+    }
+
+    .hero h1 span {
+      color: #640164;
+    }
+
+    .primary-btn {
+      background-color: #640164;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 15px;
+    }
+
+    /* Clubs Section */
+    .club-area {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .club-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .single-club {
+      background-color: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      width: 250px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .single-club img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .genric-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #640164;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    /* Footer */
+    footer.contact {
+      background-color: #000;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
@@ -17,11 +148,7 @@
         <li><a href="club.html">Clubs</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="signin.html">Login</a></li>
-        <li>
-          <div class="back-button-container">
-            <button onclick="window.history.back();" class="back-btn">← Back</button>
-          </div>
-        </li>
+        <li><button onclick="window.history.back();" class="back-btn">← Back</button></li>
       </ul>
     </div>
   </nav>
@@ -41,37 +168,37 @@
         <img src="ace.jpg.jpeg" alt="Club 1 Logo" />
         <h4>Ace Club</h4>
         <p>The Association of Computer Science at SRKR Engineering College enhances students' academic and professional growth...</p>
-        <a href="reg.html" class="genric-btn primary arrow">Register Now</a>
+        <a href="reg.html" class="genric-btn">Register Now</a>
       </div>
       <div class="single-club">
         <img src="csi.jpg.jpeg" alt="Club 2 Logo" />
         <h4>CSI</h4>
         <p>The Computer Society of India (CSI) at SRKR Engineering College plays a key role in enhancing students' technical skills...</p>
-        <a href="reg.html" class="genric-btn primary arrow">Register Now</a>
+        <a href="reg.html" class="genric-btn">Register Now</a>
       </div>
       <div class="single-club">
         <img src="coding.jpg.jpeg" alt="Club 3 Logo" />
         <h4>Coding Club</h4>
         <p>It offers a collaborative environment where students can enhance their problem-solving abilities...</p>
-        <a href="reg.html" class="genric-btn primary arrow">Register Now</a>
+        <a href="reg.html" class="genric-btn">Register Now</a>
       </div>
       <div class="single-club">
         <img src="lolo.jpg.jpeg" alt="Club 4 Logo" />
         <h4>Lolo Band</h4>
         <p>The Lolo Club at SRKR Engineering College provides a creative outlet for students to explore and express their musical talents...</p>
-        <a href="reg.html" class="genric-btn primary arrow">Register Now</a>
+        <a href="reg.html" class="genric-btn">Register Now</a>
       </div>
       <div class="single-club">
         <img src="iste.jpg.jpeg" alt="Club 5 Logo" />
         <h4>ISTE</h4>
         <p>The society organizes workshops, conferences, and competitions to keep students updated with emerging technologies...</p>
-        <a href="reg.html" class="genric-btn primary arrow">Register Now</a>
+        <a href="reg.html" class="genric-btn">Register Now</a>
       </div>
       <div class="single-club">
         <img src="nest.jpeg" alt="Club 6 Logo" />
         <h4>Language Nest</h4>
         <p>The Language Nest at SRKR Engineering College offers students a platform to enhance their communication and language skills...</p>
-        <a href="reg.html" class="genric-btn primary arrow">Register Now</a>
+        <a href="reg.html" class="genric-btn">Register Now</a>
       </div>
     </div>
   </div>
