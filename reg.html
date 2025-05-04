@@ -70,40 +70,41 @@
         }
 
         .form-container {
-            background-color: #632d91;
-            padding: 3px;
-            border-radius: 2px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            width: 50%;
-            max-width: 400px;
+            width: 320px; /* reduced size */
             margin: auto;
             animation: fadeIn 1s ease-in;
         }
 
         .form-container h2 {
-            margin-bottom: 6px;
+            margin-bottom: 15px;
             font-size: 22px;
         }
 
         input, textarea, select {
-            width: 50%;
-            padding: 4px;
-            margin: 6px 0;
-            border-radius: 10px;
-            border: 1px solid #ddd;
+            width: 90%;
+            padding: 8px;
+            margin: 12px auto;
+            border-radius: 8px;
+            border: 1px solid #000000;
             font-size: 14px;
+            display: block;
         }
 
         button {
-            background-color: #ff3c58;
+            background-color: #050001;
             color: white;
             padding: 10px;
             border: none;
             border-radius: 5px;
-            width: 50%;
+            width: 90%;
             cursor: pointer;
             font-size: 14px;
             animation: pulse 2s infinite;
+            margin-top: 18px;
         }
 
         button:hover {
@@ -189,8 +190,6 @@
                 <input type="text" id="collegeId" name="collegeId" placeholder="College ID" required />
                 <input type="text" id="yearDepartment" name="yearDepartment" placeholder="Year & Department" required />
                 <textarea id="whyJoin" name="whyJoin" placeholder="Why do you want to join?" required></textarea>
-
-            
 
                 <button type="submit">Register</button>
             </form>
