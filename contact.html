@@ -7,7 +7,6 @@
   <!-- Bootstrap CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-    /* General Reset */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -19,21 +18,20 @@
       color: #fff;
       line-height: 1.6;
     }
-    /* Navbar */
     .custom-navbar {
       background-color: #010111;
-      padding: 15px 30px;
+      padding: 10px 20px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     }
     .custom-navbar .navbar-brand {
       color: #fff;
-      font-weight: 800;
+      font-weight: 700;
       font-size: 26px;
       letter-spacing: 1px;
       text-transform: uppercase;
     }
     .custom-navbar .nav-link {
-      color: #ccc;
+      color: #faf6f6;
       font-weight: 500;
       margin-left: 20px;
       transition: 0.3s;
@@ -53,62 +51,79 @@
     .back-btn:hover {
       background-color: #d81b60;
     }
-    /* Contact Section */
+
     .contact-area {
-      background-color: #48014b;
+      background-color: #5a035d;
       color: #fff;
-      padding: 60px 0;
+      padding: 40px 0;
     }
     .contact-area .title h1 {
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 700;
       color: #fff;
     }
     .contact-area .title p {
       color: #bbb;
-      font-size: 16px;
+      font-size: 10px;
     }
+
+    .form-area {
+      display: flex;
+      justify-content: center;
+    }
+
+    .contact-form .form-group {
+      max-width: 500px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
     .form-area input,
     .form-area select,
     .form-area textarea {
-      background: rgba(255, 255, 255, 0.05);
+      background: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #fff;
-      padding: 14px 18px;
-      border-radius: 8px;
-      width: 100%;
-      margin-bottom: 20px;
+      color: #000;
+      padding: 15px 30px;
+      border-radius: 10px;
+      width: 110%;
+      margin-bottom: 15px;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
+
     .form-area input::placeholder,
     .form-area textarea::placeholder {
-      color: #aaa;
+      color: #555;
     }
+
     .form-area input:focus,
     .form-area select:focus,
     .form-area textarea:focus {
       outline: none;
       border-color: #e91e63;
       box-shadow: 0 0 8px rgba(233, 30, 99, 0.5);
-      background-color: rgba(255, 255, 255, 0.08);
+      background-color: #f9f9f9;
     }
+
     .genric-btn.primary {
       background: #e91e63;
       border: none;
       color: #fff;
-      padding: 12px 35px;
+      padding: 10px 28px;
       border-radius: 30px;
       font-weight: bold;
-      font-size: 16px;
-      transition: 0.3s;    
+      font-size: 15px;
+      transition: 0.3s;
     }
+
     .genric-btn.primary:hover {
       background: #d81b60;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
     }
+
     .confirmation-message {
-      margin-top: 15px;
+      margin-top: 10px;
       color: #4caf50;
       display: none;
       font-weight: 500;
@@ -129,18 +144,16 @@
         <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
         <li class="nav-item"><a class="nav-link" href="club.html">Club</a></li>
         <li class="nav-item"><a class="nav-link" href="signin.html">Login</a></li>
-        <li>
-      <!-- Back Button -->
-      <button class="back-btn" onclick="window.history.back();">← Back</button>
-    </div></li>
+        <li><button class="back-btn" onclick="window.history.back();">Back</button></li>
+      </ul>
+    </div>
   </nav>
-  </li>
 
   <!-- Contact Form Section -->
   <section class="contact-area section-gap">
     <div class="container">
       <div class="row d-flex justify-content-center">
-        <div class="menu-content pb-60 col-lg-8">
+        <div class="menu-content pb-40 col-lg-8">
           <div class="title text-center">
             <h1 class="mb-10">Contact Us</h1>
             <p>We’d love to hear from you! Whether you have questions, feedback, or want to get involved, reach out below.</p>
@@ -148,27 +161,25 @@
         </div>
       </div>
       <form id="contactForm" class="form-area contact-form">
-        <div class="row justify-content-center">
-          <div class="col-lg-8 form-group">
-            <input name="name" placeholder="Enter your name"
-                   onfocus="this.placeholder=''" onblur="this.placeholder='Enter your name'"
-                   class="common-input form-control" required type="text">
-            <input name="email" placeholder="Enter email address"
-                   onfocus="this.placeholder=''" onblur="this.placeholder='Enter email address'"
-                   class="common-input form-control" required type="email">
-            <select name="subject" class="common-input form-control" required>
-              <option value="">Select Subject</option>
-              <option value="general">General Inquiry</option>
-              <option value="event">Event Question</option>
-              <option value="club">Club Registration</option>
-            </select>
-            <textarea class="common-textarea form-control" name="message"
-                      placeholder="Enter Message" required></textarea>
+        <div class="form-group">
+          <input name="name" placeholder="Enter your name"
+                 onfocus="this.placeholder=''" onblur="this.placeholder='Enter your name'"
+                 class="common-input form-control" required type="text">
+          <input name="email" placeholder="Enter email address"
+                 onfocus="this.placeholder=''" onblur="this.placeholder='Enter email address'"
+                 class="common-input form-control" required type="email">
+          <select name="subject" class="common-input form-control" required>
+            <option value="">Select Subject</option>
+            <option value="general">General Inquiry</option>
+            <option value="event">Event Question</option>
+            <option value="club">Club Registration</option>
+          </select>
+          <textarea class="common-textarea form-control" name="message"
+                    placeholder="Enter Message" required></textarea>
 
-            <button class="genric-btn primary mt-3" type="submit">Send Message</button>
-            <div class="confirmation-message" id="confirmationMessage">
-              Thank you! We'll get back to you shortly.
-            </div>
+          <button class="genric-btn primary mt-2" type="submit">Send Message</button>
+          <div class="confirmation-message" id="confirmationMessage">
+            Thank you! We'll get back to you shortly.
           </div>
         </div>
       </form>
