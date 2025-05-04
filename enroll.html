@@ -6,12 +6,11 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #48014b;
+      background: #67026a;
       margin: 0;
       padding: 0;
     }
 
-    /* Navbar Styling */
     .navbar {
       background-color: #020001;
       padding: 15px 30px;
@@ -49,35 +48,36 @@
       text-decoration: underline;
     }
 
-    /* Container Styling */
     .container {
-      max-width: 600px;
-      margin: 40px auto;
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      max-width: 350px;
+      margin: 25px auto;
+      background-color: #ffffff;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     h1 {
       text-align: center;
       color: #2d2d2d;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
+      font-size: 22px;
     }
 
-    label {
-      display: block;
-      margin: 15px 0 5px;
-      font-weight: 600;
+    form {
+      text-align: center;
     }
 
     input, textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+      width: 80%;
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid #000000;
       box-sizing: border-box;
-      font-size: 16px;
+      font-size: 15px;
+      font:bold;
+      display: block;
+      margin: 12px auto; /* added spacing between fields */
     }
 
     textarea {
@@ -85,14 +85,14 @@
     }
 
     button {
-      margin-top: 25px;
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      background-color: #070002;
+      margin-top: 20px;
+      width: 65%;
+      padding: 10px;
+      font-size: 15px;
+      background-color: #010101;
       color: #fff;
       border: none;
-      border-radius: 6px;
+      border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
@@ -122,20 +122,11 @@
     <form action="/submit-cultural-fest" method="POST">
       <input type="hidden" name="event" value="Cultural Fest 2025">
 
-      <label for="name">Full Name:</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">Email Address:</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" name="phone" required>
-
-      <label for="department">Department:</label>
-      <input type="text" id="department" name="department" required>
-
-      <label for="comments">Any special talents or participation ideas?</label>
-      <textarea id="comments" name="comments" rows="4"></textarea>
+      <input type="text" id="name" name="name" placeholder="Full Name" required>
+      <input type="email" id="email" name="email" placeholder="Email Address" required>
+      <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+      <input type="text" id="department" name="department" placeholder="Department" required>
+      <textarea id="comments" name="comments" rows="3" placeholder="Any special talents or participation ideas?"></textarea>
 
       <button type="submit">Join the Event!</button>
     </form>
