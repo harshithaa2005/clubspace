@@ -1,98 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ClubSpace - Club Registration</title>
     <style>
         /* Global Styles */
         body {
-            font-family: 'Georgia', serif;
+            font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #800080; /* Violet background */
+            background-color: #640164; /* Violet background */
             color: #ff3c58;
         }
         h1, h2 {
             text-align: center;
-            color: #ff3c58;
+            color: #000000;
         }
 
         /* Navbar Styles */
         nav {
-            background-color:rgb(0, 0, 0);
-            padding: 15px 30px;
+            background-color: rgb(0, 0, 0);
+            padding: 15px 10px;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
+            text-transform: uppercase;
             align-items: center;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 10;
         }
+
         nav .logo {
             font-size: 28px;
             font-weight: bold;
-            color: #ff3c58;
+            color: #fefdfd;
         }
+
+        nav .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
         nav .nav-links a {
-            color:rgb(255, 251, 251);
+            color: #ffffff;
             text-decoration: none;
             padding: 10px 15px;
-            font-size: 14px; /* Reduced font size */
-            font-weight: bold;
+            font-size: 15px;
+            font-weight: 700;
             text-transform: uppercase;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
         }
+
         nav .nav-links a:hover {
-            background-color:rgb(3, 3, 3);
+            background-color: #ffffff;
             color: white;
             border-radius: 5px;
         }
 
         /* Main Container */
         .container {
-            margin-top: 80px;
+            margin-top: 100px;
             padding: 20px;
             text-align: center;
         }
 
         .form-container {
-            background-color: #5a2d82; /* Darker Violet for form background */
-            padding: 30px;
+            background-color: #5a2d82;
+            padding: 25px;
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             width: 100%;
-            max-width: 500px; /* Reduced form width */
+            max-width: 450px;
             margin: auto;
             animation: fadeIn 1s ease-in;
         }
 
         .form-container h2 {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            font-size: 22px;
         }
 
         input, textarea, select {
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 5px;
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 10px;
             border: 1px solid #ddd;
+            font-size: 14px;
         }
 
         button {
             background-color: #ff3c58;
             color: white;
-            padding: 12px;
+            padding: 10px;
             border: none;
             border-radius: 5px;
             width: 100%;
             cursor: pointer;
-            font-size: 16px; /* Reduced button text size */
+            font-size: 14px;
             animation: pulse 2s infinite;
         }
 
         button:hover {
-            background-color: #d6334f;
+            background-color: #d81b60;
         }
 
         /* Fade-in animation */
@@ -111,13 +126,28 @@
         /* Success Message */
         .success-message {
             display: none;
-            color: green;
-            font-size: 18px;
-            margin-top: 20px;
+            color: rgb(251, 252, 251);
+            font-size: 16px;
+            margin-top: 15px;
         }
 
         /* Mobile Responsiveness */
         @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav .nav-links {
+                flex-direction: column;
+                width: 95%;
+            }
+
+            nav .nav-links a {
+                width: 100%;
+                text-align: left;
+            }
+
             .form-container {
                 width: 90%;
             }
@@ -128,7 +158,7 @@
 
     <!-- Navigation Bar -->
     <nav>
-        <div class="logo">ClubSpace</div>
+        <div class="logo">CLUBSPACE</div>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="club.html">Clubs</a>
@@ -143,7 +173,6 @@
         <div class="form-container">
             <h2>Register for a Club</h2>
             <form id="clubRegistrationForm">
-                <!-- Club Name Dropdown -->
                 <select id="clubName" name="clubName" required>
                     <option value="">Select Club</option>
                     <option value="Ace Club">Ace Club</option>
@@ -154,34 +183,20 @@
                     <option value="Language Nest">Language Nest</option>
                 </select>
 
-                <!-- User Name -->
                 <input type="text" id="userName" name="userName" placeholder="Your Name" required />
-
-                <!-- Email -->
                 <input type="email" id="userEmail" name="userEmail" placeholder="Your Email" required />
-
-                <!-- Phone Number -->
                 <input type="tel" id="userPhone" name="userPhone" placeholder="Your Phone Number" required />
-
-                <!-- College ID -->
                 <input type="text" id="collegeId" name="collegeId" placeholder="College ID" required />
-
-                <!-- Year & Department -->
                 <input type="text" id="yearDepartment" name="yearDepartment" placeholder="Year & Department" required />
-
-                <!-- Why Join -->
                 <textarea id="whyJoin" name="whyJoin" placeholder="Why do you want to join?" required></textarea>
 
-                <!-- Agree Checkbox -->
-                <label>
+                <label style="font-size: 14px;">
                     <input type="checkbox" id="terms" required /> I agree to the terms and conditions.
                 </label>
 
-                <!-- Submit Button -->
                 <button type="submit">Register</button>
             </form>
 
-            <!-- Success Message -->
             <div class="success-message" id="successMessage">
                 Successfully Registered! 🎉
             </div>
@@ -190,20 +205,13 @@
 
     <!-- JavaScript -->
     <script>
-        // Form submission handler
         const form = document.getElementById('clubRegistrationForm');
         const successMessage = document.getElementById('successMessage');
 
         form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form from actually submitting
-
-            // Show success message
+            event.preventDefault();
             successMessage.style.display = 'block';
-
-            // Clear the form
             form.reset();
-
-            // Optionally, you can add code to submit data to a server here using AJAX.
         });
     </script>
 
