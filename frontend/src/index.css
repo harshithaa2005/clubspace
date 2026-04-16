@@ -17,6 +17,13 @@ body {
     background-color: #2D0033; /* Slightly darker and richer purple gradient base */
     background: linear-gradient(135deg, #2D0033 0%, #15001A 100%);
     min-height: 100vh;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+input, textarea, select {
+    user-select: auto;
+    -webkit-user-select: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -83,6 +90,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-links {
     list-style: none;
     display: flex;
+    align-items: center;
     gap: 30px;
 }
 
@@ -142,7 +150,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Banner */
 .hero {
     height: 100vh;
-    background: url('club2.jpg') center/cover no-repeat;
+    background: url('/hero-bg.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -508,4 +516,10 @@ input.form-control:focus, select.form-control:focus, textarea.form-control:focus
     background: rgba(255, 255, 255, 0.1) !important;
     border-color: #ff3c57 !important;
     box-shadow: 0 0 10px rgba(255, 60, 87, 0.3) !important;
+}
+
+/* Fix standard HTML dropdown options rendering white-on-white */
+select option {
+    background-color: #15001A; /* matches dark theme */
+    color: #ffffff;
 }

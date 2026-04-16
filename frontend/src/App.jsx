@@ -11,12 +11,20 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Enroll from './pages/Enroll';
 import Reg from './pages/Reg';
+import AdminDashboard from './pages/AdminDashboard'; // ADDED
 
-// Protected Route Component
+// Protected Route Component for standard users
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = React.useContext(AuthContext);
   if (loading) return <div>Loading...</div>;
   return user ? children : <Navigate to="/signin" replace />;
+};
+
+// Admin Route Component strictly for Admins
+const AdminRoute = ({ children }) => {
+  const { user, loading } = React.useContext(AuthContext);
+  if (loading) return <div>Loading...</div>;
+  return (user && user.role === 'admin') ? children : <Navigate to="/signin" replace />;
 };
 
 function App() {
@@ -40,6 +48,11 @@ function App() {
               <ProtectedRoute>
                 <Reg />
               </ProtectedRoute>
+            } />
+            <Route path="/admin" element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
             } />
           </Routes>
         </Layout>

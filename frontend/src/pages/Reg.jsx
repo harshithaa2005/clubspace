@@ -1,11 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const Reg = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ clubName: 'ACE CLUB', name: '', email: '', phone: '', yearDepartment: '', whyJoin: '' });
+  const { user } = useContext(AuthContext);
+  const [formData, setFormData] = useState({ clubName: 'Ace Club', name: '', email: '', phone: '', yearDepartment: '', whyJoin: '' });
   const [success, setSuccess] = useState(false);
+  const [myStatuses, setMyStatuses] = useState({});
+
+  useEffect(() => {
+    if(user && user.role === 'user') {
+      const fetchMyClubs = async () => {
+        try {
+          const res = await axios.get('http://localhost:5000/api/forms/my-clubs', {
+            headers: { 'x-auth-token': localStorage.getItem('token') }
+          });
+          const statusMap = {};
+          res.data.forEach(reg => {
+            statusMap[reg.clubName] = reg.status;
+          });
+          setMyStatuses(statusMap);
+        } catch(err) {
+          console.error(err);
+        }
+      };
+      fetchMyClubs();
+    }
+  }, [user]);
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -20,7 +43,11 @@ const Reg = () => {
       setTimeout(() => navigate('/clubs'), 2000);
     } catch (err) {
       console.error(err);
-      alert('Error registering. Make sure you are logged in.');
+      if (err.response && err.response.data && err.response.data.msg) {
+        alert(err.response.data.msg);
+      } else {
+        alert('Error registering. Make sure you are logged in.');
+      }
     }
   };
 
@@ -30,9 +57,12 @@ const Reg = () => {
         <h1 style={{ textAlign: 'center', fontSize: '32px', fontWeight: 800, color: '#fff', marginBottom: '30px' }}>Register for a Club</h1>
         <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
           <select className="form-control" name="clubName" value={formData.clubName} onChange={handleChange} required style={{ width: '100%', marginBottom: '20px', padding: '10px', background: '#3b0066', color: 'white' }}>
-              <option value="ACE CLUB">ACE CLUB</option>
-              <option value="IETE CLUB">IETE CLUB</option>
-              <option value="GDG CLUB">GDG CLUB</option>
+              <option value="Ace Club">Ace Club</option>
+              <option value="CSI">CSI</option>
+              <option value="Coding Club">Coding Club</option>
+              <option value="Lolo Band">Lolo Band</option>
+              <option value="ISTE">ISTE</option>
+              <option value="Language Nest">Language Nest</option>
           </select>
           <input className="form-control" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name" required type="text" style={{ width: '100%', marginBottom: '20px', padding: '10px' }} />
           <input className="form-control" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required type="email" style={{ width: '100%', marginBottom: '20px', padding: '10px' }} />
@@ -40,7 +70,13 @@ const Reg = () => {
           <input className="form-control" name="yearDepartment" value={formData.yearDepartment} onChange={handleChange} placeholder="Year & Department" required type="text" style={{ width: '100%', marginBottom: '20px', padding: '10px' }} />
           <textarea className="form-control" name="whyJoin" value={formData.whyJoin} onChange={handleChange} placeholder="Why do you want to join?" rows="3" style={{ width: '100%', marginBottom: '20px', padding: '10px' }}></textarea>
           
-          <button type="submit" className="btn btn-buy" style={{ width: '100%' }}>Register</button>
+          {myStatuses[formData.clubName] === 'Pending' ? (
+            <button type="button" disabled className="btn" style={{ width: '100%', background: 'rgba(255, 255, 255, 0.1)', color: '#ffcc00', border: '1px solid #ffcc00', cursor: 'not-allowed' }}>Waiting for Approval</button>
+          ) : myStatuses[formData.clubName] === 'Approved' ? (
+            <button type="button" disabled className="btn" style={{ width: '100%', background: 'rgba(255, 255, 255, 0.1)', color: '#00d2ff', border: '1px solid #00d2ff', cursor: 'not-allowed' }}>Already Registered</button>
+          ) : (
+            <button type="submit" className="btn btn-buy" style={{ width: '100%' }}>Register</button>
+          )}
           
           {success && <div style={{ color: '#4caf50', marginTop: '15px' }}>Successfully registered! Redirecting...</div>}
         </form>

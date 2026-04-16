@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Enroll = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ event: 'Event 2025', name: '', email: '', phone: '', department: '', comments: '' });
+  const [formData, setFormData] = useState({ event: 'Event 2026', name: '', email: '', phone: '', department: '', comments: '' });
   const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
