@@ -1,0 +1,631 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Clubspace Events</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    .filter-section {
+      max-width: 1200px;
+      margin: 120px auto 2rem auto;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      color: white;
+    }
+    .filter-group label {
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      font-size: 0.8rem;
+      color: #ff3c57;
+      text-transform: uppercase;
+      font-family: 'Outfit', sans-serif;
+    }
+    .filter-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 10px;
+    }
+    .filter-option {
+      font-size: 0.85rem;
+      background-color: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    .filter-option:hover,
+    .filter-option.active {
+      background-color: #ff3c57;
+      border-color: #ff3c57;
+      box-shadow: 0 4px 12px rgba(255,60,87,0.3);
+    }
+    .sub-events {
+      margin-top: 1rem;
+      padding-left: 1.5rem;
+      border-left: 2px solid #ff3c57;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .sub-event {
+      display: grid;
+      grid-template-columns: 40px 1fr auto;
+      align-items: center;
+      gap: 1rem;
+    }
+    .sub-event-name { color: #f2f2f2; font-weight: 600; }
+    .sub-event-time { font-size: 0.8rem; color: #a9a9a9; }
+    .sub-event-img { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; }
+    
+    .sort-dropdown {
+      max-width: 1200px;
+      margin: 0 auto 2rem auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+    select.sort-select {
+      background-color: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: white;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      outline: none;
+    }
+    #allEventsSection {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      padding-bottom: 80px;
+    }
+    article.event-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s ease;
+      animation: fadeUp 0.6s ease forwards;
+    }
+    article.event-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    article.event-item > div[aria-label] {
+      height: 120px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: rgba(255, 60, 87, 0.15);
+      border: 1px solid rgba(255,60,87,0.3);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-family: 'Outfit', sans-serif;
+    }
+    .event-title-date { display: flex; flex-direction: column; gap: 0.3rem; }
+    .event-date-visible { font-size: 0.9rem; color: #ff3c57; font-weight: 600; }
+    .event-location { font-size: 0.85rem; color: #dcdcdc; display: flex; align-items: center; gap: 0.5rem; }
+    .event-location svg { fill: #ff3c57; width: 14px; height: 14px; }
+    .btn-buy, .btn-more {
+      width: 100%;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-buy {
+      padding: 12px;
+      margin-top: 15px;
+      background: linear-gradient(135deg, #ff3c57, #d81b60);
+      color: white;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 15px rgba(255, 60, 87, 0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-buy:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 60, 87, 0.6); }
+    .btn-more {
+      padding: 10px;
+      margin-top: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #e0e0e0;
+      border-radius: 30px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn-more:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  </style>
+ </head>
+ <body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">ClubSpace</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="club.html">Clubs</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="signin.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Filters -->
+  <section class="filter-section" role="region" aria-label="Genre options">
+   <div class="filter-group">
+    <label for="genre-filters">GENRE</label>
+    <div class="filter-options" id="genre-filters" role="list">
+     <div class="filter-option active" role="listitem" tabindex="0" data-club="all">
+      All
+     </div>
+     <div class="filter-option" role="listitem" tabindex="0" data-club="ace club">
+      ACE CLUB
+     </div>
+     <div class="filter-option" role="listitem" tabindex="0" data-club="lolo">
+      LOLO
+     </div>
+     <div class="filter-option" role="listitem" tabindex="0" data-club="iste">
+      ISTE
+     </div>
+     <div class="filter-option" role="listitem" tabindex="0" data-club="coding club">
+      CODING CLUB
+     </div>
+     <div class="filter-option" role="listitem" tabindex="0" data-club="language nest">
+      LANGUAGE NEST
+     </div>
+     <div class="filter-option" role="listitem" tabindex="0" data-club="gdg">
+      GDG
+     </div>
+     <div class="filter-option" role="listitem" tabindex="0" data-club="iete club">
+      IETE CLUB
+     </div>
+     <div class="filter-option" role="listitem" tabindex="0" data-club="automotive club">
+      AUTOMOTIVE CLUB
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Sorting dropdown -->
+  <div class="sort-dropdown" aria-label="Sort events by date">
+   <label for="sortOrder" class="sr-only">Sort events</label>
+   <select
+     class="sort-select"
+     id="sortOrder"
+     name="sortOrder"
+     aria-live="polite"
+     aria-atomic="true"
+   >
+    <option value="asc" selected>Oldest First</option>
+    <option value="desc">Newest First</option>
+   </select>
+  </div>
+  <!-- Main content -->
+  <main id="eventsContainer" role="list">
+   <section aria-label="All events" class="event-month-section" role="region">
+    <section id="allEventsSection" class="events-container">
+     <article
+       class="event-item"
+       data-clubs="ace club"
+       data-date="2025-04-19"
+       role="listitem"
+       tabindex="0"
+     >
+      <div aria-label="ML EXPLORE event">ML EXPLORE</div>
+      <div class="flex-grow flex flex-col justify-between mt-3 sm:mt-0">
+       <div>
+        <div class="event-title-date">
+         <span class="event-date-visible" aria-label="Event date April 19, 2025"
+           >April 19, 2025</span
+         >
+         <p class="text-xs mt-1 font-semibold text-[#e60000]">ACE CLUB</p>
+        </div>
+        <p class="event-location mt-1">
+         <svg
+           aria-hidden="true"
+           focusable="false"
+           viewBox="0 0 24 24"
+           role="img"
+           aria-label="Location icon"
+         >
+          <path
+            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.5-2.5 6.75-5 9.88C9.5 15.75 7 11.5 7 9z"
+          ></path>
+          <circle cx="12" cy="9" r="2.5"></circle>
+         </svg>
+         CSE MINI AUDITORIUM
+        </p>
+        <p class="text-xs mt-1">Doors 9:00 AM to 12:30 PM</p>
+       </div>
+      </div>
+      <div class="flex-col justify-start mt-3 sm:mt-0">
+       <a href="enroll.html"><button class="btn-buy">ENROLL NOW</button></a>
+       <button class="btn-more py-1">More Info</button>
+      </div>
+     </article>
+     <article
+       class="event-item"
+       data-clubs="iete club"
+       data-date="2025-04-26"
+       role="listitem"
+       tabindex="0"
+     >
+      <div aria-label="CRUX event">CRUX</div>
+      <div class="flex-grow flex flex-col justify-between mt-3 sm:mt-0">
+       <div>
+        <div class="event-title-date">
+         <span class="event-date-visible" aria-label="Event date April 26, 2025"
+           >April 26, 2025</span
+         >
+         <p class="text-xs mt-1 font-semibold text-[#e60000]">IETE CLUB</p>
+        </div>
+        <p class="event-location mt-1">
+         <svg
+           aria-hidden="true"
+           focusable="false"
+           viewBox="0 0 24 24"
+           role="img"
+           aria-label="Location icon"
+         >
+          <path
+            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.5-2.5 6.75-5 9.88C9.5 15.75 7 11.5 7 9z"
+          ></path>
+          <circle cx="12" cy="9" r="2.5"></circle>
+         </svg>
+         ECE DEPARTMENT
+        </p>
+        <p class="text-xs mt-1">Doors 8:00 AM to 9:00 AM</p>
+       </div>
+      </div>
+      <div class="flex-col justify-start mt-3 sm:mt-0">
+       <a href="enroll.html"><button class="btn-buy">ENROLL NOW</button></a>
+       <button class="btn-more py-1">More Info</button>
+      </div>
+     </article>
+     <article
+       class="event-item"
+       data-clubs="automotive club"
+       data-date="2025-05-01"
+       role="listitem"
+       tabindex="0"
+     >
+      <div aria-label="SANKALP event">SANKALP</div>
+      <div class="flex-grow flex flex-col justify-between mt-3 sm:mt-0">
+       <div>
+        <div class="event-title-date">
+         <span class="event-date-visible" aria-label="Event date May 1, 2025"
+           >May 1, 2025</span
+         >
+         <p class="text-xs mt-1 font-semibold text-[#e60000]">AUTOMOTIVE CLUB</p>
+        </div>
+        <p class="event-location mt-1">
+         <svg
+           aria-hidden="true"
+           focusable="false"
+           viewBox="0 0 24 24"
+           role="img"
+           aria-label="Location icon"
+         >
+          <path
+            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.5-2.5 6.75-5 9.88C9.5 15.75 7 11.5 7 9z"
+          ></path>
+          <circle cx="12" cy="9" r="2.5"></circle>
+         </svg>
+         MECHANICAL WORKSHOP
+        </p>
+        <p class="text-xs mt-1">Doors 9:30 AM to 10:30 AM</p>
+       </div>
+      </div>
+      <div class="flex-col justify-start mt-3 sm:mt-0">
+       <a href="reg.html"><button class="btn-buy">ENROLL NOW</button></a>
+       <button class="btn-more py-1">More Info</button>
+      </div>
+     </article>
+     <article
+       class="event-item"
+       data-clubs="gdg club"
+       data-date="2025-05-15"
+       role="listitem"
+       tabindex="0"
+     >
+      <div aria-label="MEME CONTEST event">MEME CONTEST</div>
+      <div class="flex-grow flex flex-col justify-between mt-3 sm:mt-0">
+       <div>
+        <div class="event-title-date">
+         <span class="event-date-visible" aria-label="Event date May 15, 2025"
+           >May 15, 2025</span
+         >
+         <p class="text-xs mt-1 font-semibold text-[#e60000]">GDG CLUB</p>
+        </div>
+        <p class="text-xs mt-1">By 12:30 PM</p>
+       </div>
+      </div>
+      <div class="flex-col justify-start mt-3 sm:mt-0">
+       <a href="enroll.html"><button class="btn-buy">ENROLL NOW</button></a>
+       <button class="btn-more py-1">More Info</button>
+      </div>
+     </article>
+     <article
+       class="event-item"
+       data-clubs="ace club"
+       data-date="2025-05-20"
+       role="listitem"
+       tabindex="0"
+     >
+      <h3 class="text-lg font-bold text-[#e60000] mb-3">SPURTHI</h3>
+      <p class="text-xs font-semibold text-[#e60000] mb-4">
+       ACE CLUB | FRI, MAY 20, 2025
+      </p>
+      <div class="sub-events">
+       <div class="sub-event">
+        <img
+          alt="AI DOJO event image showing a futuristic AI robot with digital interface in a dojo setting"
+          class="sub-event-img"
+          height="40"
+          src="https://storage.googleapis.com/a1aa/image/35823114-eecb-489d-c228-59af71ddca8a.jpg"
+          width="40"
+        />
+        <div class="sub-event-name-time">
+         <span class="sub-event-name">AI DOJO</span>
+         <span class="sub-event-time">9:00 AM - 10:00 AM</span>
+        </div>
+        <a href="enroll.html"
+          ><button class="btn-buy py-0.5 px-2 text-xs rounded">Enroll Now</button></a
+        >
+       </div>
+       <div class="sub-event">
+        <img
+          alt="ESPORTS event image showing a competitive gaming scene with players and digital effects"
+          class="sub-event-img"
+          height="40"
+          src="https://storage.googleapis.com/a1aa/image/2b146f86-5e56-4cdb-864e-96918ddd403c.jpg"
+          width="40"
+        />
+        <div class="sub-event-name-time">
+         <span class="sub-event-name">ESPORTS</span>
+         <span class="sub-event-time">10:15 AM - 11:15 AM</span>
+        </div>
+        <a href="enroll.html"
+          ><button class="btn-buy py-0.5 px-2 text-xs rounded">Enroll Now</button></a
+        >
+       </div>
+       <div class="sub-event">
+        <img
+          alt="TALKATHON event image showing a microphone and audience in a conference setting"
+          class="sub-event-img"
+          height="40"
+          src="https://storage.googleapis.com/a1aa/image/37ea7722-42ae-4832-6d0a-06837ee99114.jpg"
+          width="40"
+        />
+        <div class="sub-event-name-time">
+         <span class="sub-event-name">TALKATHON</span>
+         <span class="sub-event-time">11:30 AM - 12:30 PM</span>
+        </div>
+        <a href="enroll.html"
+          ><button class="btn-buy py-0.5 px-2 text-xs rounded">Enroll Now</button></a
+        >
+       </div>
+       <div class="sub-event">
+        <img
+          alt="BOX OFFICE event image showing a classic cinema ticket and film reel"
+          class="sub-event-img"
+          height="40"
+          src="https://storage.googleapis.com/a1aa/image/dd77be17-fda5-4ef1-6298-c2aceef9de4a.jpg"
+          width="40"
+        />
+        <div class="sub-event-name-time">
+         <span class="sub-event-name">BOX OFFICE</span>
+         <span class="sub-event-time">12:45 PM - 1:45 PM</span>
+        </div>
+        <a href="enroll.html"
+          ><button class="btn-buy py-0.5 px-2 text-xs rounded">Enroll Now</button></a
+        >
+       </div>
+       <div class="sub-event">
+        <img
+          alt="WEBVERSE event image showing a digital web globe with network connections"
+          class="sub-event-img"
+          height="40"
+          src="https://storage.googleapis.com/a1aa/image/5028eba5-088c-4255-ac62-9f17e06cc6f8.jpg"
+          width="40"
+        />
+        <div class="sub-event-name-time">
+         <span class="sub-event-name">WEBVERSE</span>
+         <span class="sub-event-time">2:00 PM - 3:00 PM</span>
+        </div>
+        <a href="enroll.html"
+          ><button class="btn-buy py-0.5 px-2 text-xs rounded">Enroll Now</button></a
+        >
+       </div>
+       <div class="sub-event">
+        <img
+          alt="ASTRO ARCADE event image showing a space-themed arcade game with stars and planets"
+          class="sub-event-img"
+          height="40"
+          src="https://storage.googleapis.com/a1aa/image/023e61ac-80da-4058-f197-02cf771f5f8a.jpg"
+          width="40"
+        />
+        <div class="sub-event-name-time">
+         <span class="sub-event-name">ASTRO ARCADE</span>
+         <span class="sub-event-time">3:15 PM - 4:00 PM</span>
+        </div>
+        <a href="enroll.html"
+          ><button class="btn-buy py-0.5 px-2 text-xs rounded">Enroll Now</button></a
+        >
+       </div>
+       <div class="sub-event">
+        <img
+          alt="CODE WARS event image showing a coding battle with code snippets and warriors"
+          class="sub-event-img"
+          height="40"
+          src="https://storage.googleapis.com/a1aa/image/c717331d-f4ee-4524-e04d-69060fc33d92.jpg"
+          width="40"
+        />
+        <div class="sub-event-name-time">
+         <span class="sub-event-name">CODE WARS</span>
+         <span class="sub-event-time">9:00 AM - 10:00 AM</span>
+        </div>
+        <a href="enroll.html"
+          ><button class="btn-buy py-0.5 px-2 text-xs rounded">Enroll Now</button></a
+        >
+       </div>
+       <div class="sub-event">
+        <img
+          alt="CRICKET AUCTION event image showing a cricket bat and auction gavel"
+          class="sub-event-img"
+          height="40"
+          src="https://storage.googleapis.com/a1aa/image/aad4d3d1-ab83-4260-91c1-57f6965aa179.jpg"
+          width="40"
+        />
+        <div class="sub-event-name-time">
+         <span class="sub-event-name">CRICKET AUCTION</span>
+         <span class="sub-event-time">10:15 AM - 11:15 AM</span>
+        </div>
+        <a href="enroll.html"
+          ><button class="btn-buy py-0.5 px-2 text-xs rounded">Enroll Now</button></a
+        >
+       </div>
+       <div class="sub-event">
+        <img
+          alt="IDEA PRESENTATION event image showing a lightbulb and presentation board"
+          class="sub-event-img"
+          height="40"
+          src="https://storage.googleapis.com/a1aa/image/0a989ec3-2083-4584-1999-71cf7a72a44c.jpg"
+          width="40"
+        />
+        <div class="sub-event-name-time">
+         <span class="sub-event-name">IDEA PRESENTATION</span>
+         <span class="sub-event-time">11:30 AM - 12:30 PM</span>
+        </div>
+        <a href="enroll.html"
+          ><button class="btn-buy py-0.5 px-2 text-xs rounded">Enroll Now</button></a
+        >
+       </div>
+       <div class="sub-event">
+        <img
+          alt="ACE GOT TALENT event image showing a stage with spotlight and microphone"
+          class="sub-event-img"
+          height="40"
+          src="https://storage.googleapis.com/a1aa/image/dffb8cfd-0dc3-461b-4a4a-d1b269d9cff4.jpg"
+          width="40"
+        />
+        <div class="sub-event-name-time">
+         <span class="sub-event-name">ACE GOT TALENT</span>
+         <span class="sub-event-time">12:45 PM - 1:45 PM</span>
+        </div>
+        <a href="enroll.html"
+          ><button class="btn-buy py-0.5 px-2 text-xs rounded">Enroll Now</button></a
+        >
+       </div>
+      </div>
+     </article>
+    </section>
+   </section>
+  </main>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-address">
+        <h3>Contact Us</h3>
+        <p>SRKREC <br>China Amiram,Bhimavaram,<br>Andhra Pradesh,India.<br>Email: principal@srkrec.ac.in<br>Phone: 08816-223332(Office).</p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="club.html">Clubs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook"/></a>
+          <a href="https://twitter.com" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/twitter.png" alt="Twitter"/></a>
+          <a href="https://instagram.com" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram"/></a>
+          <a href="https://linkedin.com" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn"/></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 SRKREC. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Genre filter
+    const genreFilters = document.querySelectorAll("#genre-filters .filter-option");
+    const eventItems = document.querySelectorAll(".event-item");
+    const allEventsSection = document.getElementById("allEventsSection");
+
+    genreFilters.forEach((filter) => {
+      filter.addEventListener("click", () => {
+        genreFilters.forEach((f) => f.classList.remove("active"));
+        filter.classList.add("active");
+        const selectedClub = filter.getAttribute("data-club").toLowerCase();
+
+        eventItems.forEach((event) => {
+          const clubs = event.getAttribute("data-clubs").toLowerCase();
+          if (selectedClub === "all" || clubs.includes(selectedClub)) {
+            event.style.display = "";
+          } else {
+            event.style.display = "none";
+          }
+        });
+        // After filtering, re-sort visible events
+        const ascending = sortSelect.value === "asc";
+        sortEvents(ascending);
+      });
+    });
+
+    // Sorting dropdown
+    const sortSelect = document.getElementById("sortOrder");
+
+    function sortEvents(ascending = true) {
+      // Get all visible events
+      const events = Array.from(allEventsSection.querySelectorAll(".event-item")).filter(
+        (ev) => ev.style.display !== "none"
+      );
+      events.sort((a, b) => {
+        const aDate = new Date(a.getAttribute("data-date"));
+        const bDate = new Date(b.getAttribute("data-date"));
+        return ascending ? aDate - bDate : bDate - aDate;
+      });
+      events.forEach((ev) => allEventsSection.appendChild(ev));
+    }
+
+    sortSelect.addEventListener("change", () => {
+      const ascending = sortSelect.value === "asc";
+      sortEvents(ascending);
+    });
+
+    // Initial sort on page load (oldest first)
+    window.addEventListener("load", () => {
+      sortEvents(true);
+    });
+
+    // Sign In button click
+    const signInBtn = document.getElementById("signInBtn");
+    signInBtn.addEventListener("click", () => {
+      alert("Redirect to Sign In page or open modal");
+    });
+  </script>
+ </body>
+</html>
