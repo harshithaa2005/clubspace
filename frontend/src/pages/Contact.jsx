@@ -10,7 +10,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/forms/contact', formData);
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/forms/contact`, formData);
       setSuccess(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (err) {

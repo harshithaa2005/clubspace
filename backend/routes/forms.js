@@ -54,6 +54,12 @@ router.post('/club-register', auth, async (req, res) => {
   try {
     const { clubName, name, email, phone, yearDepartment, whyJoin } = req.body;
     
+    // Check for existing registration
+    const existingRegistration = await ClubRegistration.findOne({ user: req.user.id, clubName });
+    if(existingRegistration) {
+      return res.status(400).json({ msg: 'You have already applied or registered for this club.' });
+    }
+    
     const registration = new ClubRegistration({
       user: req.user.id,
       clubName,
@@ -66,6 +72,19 @@ router.post('/club-register', auth, async (req, res) => {
     
     await registration.save();
     res.json({ msg: 'Successfully registered for club' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   GET api/forms/my-clubs
+// @desc    Get user's club registrations
+// @access  Private
+router.get('/my-clubs', auth, async (req, res) => {
+  try {
+    const clubs = await ClubRegistration.find({ user: req.user.id });
+    res.json(clubs);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

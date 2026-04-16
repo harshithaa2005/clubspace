@@ -14,7 +14,7 @@ const Reg = () => {
     if(user && user.role === 'user') {
       const fetchMyClubs = async () => {
         try {
-          const res = await axios.get('http://localhost:5000/api/forms/my-clubs', {
+          const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/forms/my-clubs`, {
             headers: { 'x-auth-token': localStorage.getItem('token') }
           });
           const statusMap = {};
@@ -36,7 +36,7 @@ const Reg = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/forms/club-register', formData, {
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/forms/club-register`, formData, {
         headers: { 'x-auth-token': token }
       });
       setSuccess(true);

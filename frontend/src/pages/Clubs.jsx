@@ -11,7 +11,7 @@ const Clubs = () => {
     if(user && user.role === 'user') {
       const fetchMyClubs = async () => {
         try {
-          const res = await axios.get('http://localhost:5000/api/forms/my-clubs', {
+          const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/forms/my-clubs`, {
             headers: { 'x-auth-token': localStorage.getItem('token') }
           });
           const statusMap = {};

