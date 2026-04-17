@@ -95,5 +95,17 @@ router.get('/my-clubs', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+// @route   GET api/forms/my-events
+// @desc    Get user's event enrollments
+// @access  Private
+router.get('/my-events', auth, async (req, res) => {
+  try {
+    const events = await EventEnrollment.find({ user: req.user.id });
+    res.json(events);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;

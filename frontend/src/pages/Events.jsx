@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { AuthContext } from '../context/AuthContext';
 
 const Events = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const clubFilter = queryParams.get('club');
+  
+  const { user } = useContext(AuthContext);
+  const [enrolledEventNames, setEnrolledEventNames] = useState([]);
+
+  useEffect(() => {
+    if (user && user.role === 'user') {
+      const fetchMyEvents = async () => {
+        try {
+          const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/forms/my-events`, {
+            headers: { 'x-auth-token': localStorage.getItem('token') }
+          });
+          const eventNames = res.data.map(enrollment => enrollment.event);
+          setEnrolledEventNames(eventNames);
+        } catch (err) {
+          console.error('Error fetching enrolled events', err);
+        }
+      };
+      fetchMyEvents();
+    }
+  }, [user]);
 
   const allEvents = [
     // Ace Club
@@ -46,10 +68,12 @@ const Events = () => {
   ];
 
   const displayedEvents = clubFilter ? allEvents.filter(e => e.club.toLowerCase() === clubFilter.toLowerCase()) : allEvents;
+  
+  const enrolled = displayedEvents.filter(e => enrolledEventNames.includes(e.name));
+  const notEnrolled = displayedEvents.filter(e => !enrolledEventNames.includes(e.name));
 
   return (
     <div style={{ padding: '100px 20px 60px 20px', maxWidth: '1200px', margin: '0 auto', color: 'white', minHeight: '80vh' }}>
-      <h2 className="animate-fade-up" style={{ textAlign: 'center', fontSize: '36px', marginBottom: '10px', color: '#ff3c57', fontWeight: 'bold' }}>Upcoming Events</h2>
       
       {clubFilter && (
         <div className="animate-fade-up delay-100" style={{ textAlign: 'center', marginBottom: '30px' }}>
@@ -59,11 +83,34 @@ const Events = () => {
 
       {!clubFilter && <p className="animate-fade-up delay-100" style={{ textAlign: 'center', marginBottom: '40px', color: '#888' }}>Showing all public events</p>}
 
+      {enrolled.length > 0 && (
+        <>
+          <h2 className="animate-fade-up" style={{ textAlign: 'center', fontSize: '32px', marginBottom: '30px', color: '#00d2ff', fontWeight: 'bold' }}>Your Enrolled Events</h2>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', justifyContent: 'center', marginBottom: '60px' }}>
+            {enrolled.map((ev, index) => (
+              <article key={`enrolled-${index}`} className="event-item animate-fade-up" style={{ width: '320px', background: 'linear-gradient(135deg, rgba(0,210,255,0.05), rgba(0,91,226,0.05))', backdropFilter: 'blur(10px)', padding: '25px', borderRadius: '15px', border: '1px solid rgba(0,210,255,0.3)', animationDelay: `${(index + 2) * 0.1}s` }}>
+                <div aria-label={`${ev.name} event`} style={{ height: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', fontWeight: 800, background: 'rgba(0,210,255,0.15)', border: '1px solid rgba(0,210,255,0.3)', borderRadius: '10px', marginBottom: '1.5rem', textAlign: 'center', padding: '0 10px', color: '#ffffff' }}>
+                  {ev.name}
+                </div>
+                <div className="event-title-date">
+                  <span className="event-date-visible" style={{ color: '#00d2ff', fontWeight: 600 }}>{ev.date}</span>
+                  <p style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>{ev.club.toUpperCase()}</p>
+                </div>
+                <p style={{ fontSize: '0.85rem', color: '#ccc', margin: '10px 0' }}>{ev.location}</p>
+                <p style={{ fontSize: '0.8rem' }}>{ev.time}</p>
+                <button className="btn" disabled style={{ width: '100%', marginTop: '20px', background: 'rgba(255, 255, 255, 0.1)', color: '#00d2ff', border: '1px solid #00d2ff', cursor: 'default' }}>ALREADY ENROLLED</button>
+              </article>
+            ))}
+          </div>
+        </>
+      )}
+
+      <h2 className="animate-fade-up" style={{ textAlign: 'center', fontSize: '36px', marginBottom: '30px', color: '#ff3c57', fontWeight: 'bold' }}>{enrolled.length > 0 ? "More Upcoming Events" : "Upcoming Events"}</h2>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '30px', justifyContent: 'center' }}>
-        {displayedEvents.length === 0 ? (
-          <p className="animate-fade-in" style={{ color: '#ccc', marginTop: '40px' }}>No upcoming events scheduled for {clubFilter} right now.</p>
-        ) : displayedEvents.map((ev, index) => (
-          <article key={index} className="event-item animate-fade-up" style={{ width: '320px', background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(10px)', padding: '25px', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.05)', animationDelay: `${(index + 2) * 0.1}s` }}>
+        {notEnrolled.length === 0 ? (
+          <p className="animate-fade-in" style={{ color: '#ccc', marginTop: '40px' }}>No upcoming events right now.</p>
+        ) : notEnrolled.map((ev, index) => (
+          <article key={`upcoming-${index}`} className="event-item animate-fade-up" style={{ width: '320px', background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(10px)', padding: '25px', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.05)', animationDelay: `${(index + 2) * 0.1}s` }}>
             <div aria-label={`${ev.name} event`} style={{ height: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', fontWeight: 800, background: 'rgba(255,60,87,0.15)', border: '1px solid rgba(255,60,87,0.3)', borderRadius: '10px', marginBottom: '1.5rem', textAlign: 'center', padding: '0 10px' }}>
               {ev.name}
             </div>
@@ -73,7 +120,7 @@ const Events = () => {
             </div>
             <p style={{ fontSize: '0.85rem', color: '#ccc', margin: '10px 0' }}>{ev.location}</p>
             <p style={{ fontSize: '0.8rem' }}>{ev.time}</p>
-            <Link to="/enroll"><button className="btn btn-buy" style={{ width: '100%', marginTop: '20px' }}>ENROLL NOW</button></Link>
+            <Link to={`/enroll?event=${encodeURIComponent(ev.name)}`}><button className="btn btn-buy" style={{ width: '100%', marginTop: '20px' }}>ENROLL NOW</button></Link>
           </article>
         ))}
       </div>
