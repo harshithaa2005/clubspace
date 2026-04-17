@@ -523,3 +523,91 @@ select option {
     background-color: #15001A; /* matches dark theme */
     color: #ffffff;
 }
+
+/* ================== Media Queries for Responsiveness ================== */
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 50px;
+    }
+    .features, .gallery, .highlighted-event, .featured-clubs {
+        padding: 60px 15px;
+    }
+    .nav-links {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        font-size: 28px;
+        color: white;
+        background: none;
+        border: none;
+    }
+    .nav-links {
+        display: none;
+    }
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%; /* Just below the fixed navbar */
+        left: 0;
+        background-color: rgba(20, 0, 30, 0.95);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        padding: 30px 0;
+        gap: 25px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        text-align: center;
+    }
+    .nav-links li {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .nav-links a {
+        font-size: 18px;
+    }
+    .hero-content h1 {
+        font-size: 40px;
+    }
+    .hero-content p {
+        font-size: 16px;
+    }
+    .event-box {
+        padding: 30px 20px;
+    }
+    .event-name {
+        font-size: 26px;
+    }
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-social .social-icons {
+        justify-content: center;
+    }
+    .logo {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 32px;
+    }
+    .feature {
+        width: 100%;
+    }
+    .club-card {
+        min-width: 260px;
+    }
+}

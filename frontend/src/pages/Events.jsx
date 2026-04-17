@@ -48,7 +48,7 @@ const Events = () => {
   const displayedEvents = clubFilter ? allEvents.filter(e => e.club.toLowerCase() === clubFilter.toLowerCase()) : allEvents;
 
   return (
-    <div style={{ paddingTop: '100px', maxWidth: '1200px', margin: '0 auto', color: 'white', minHeight: '80vh', paddingBottom: '60px' }}>
+    <div style={{ padding: '100px 20px 60px 20px', maxWidth: '1200px', margin: '0 auto', color: 'white', minHeight: '80vh' }}>
       <h2 className="animate-fade-up" style={{ textAlign: 'center', fontSize: '36px', marginBottom: '10px', color: '#ff3c57', fontWeight: 'bold' }}>Upcoming Events</h2>
       
       {clubFilter && (

@@ -103,10 +103,10 @@ const Clubs = () => {
             style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px', maxWidth: '1000px', margin: '0 auto' }}
           >
             {registeredClubs.map((club, index) => (
-              <div 
+                <div 
                 key={`reg-${index}`} 
-                className="single-club animate-fade-up" 
-                style={{ background: 'linear-gradient(90deg, rgba(0, 210, 255, 0.05), rgba(0, 91, 226, 0.02))', border: '1px solid rgba(0, 210, 255, 0.2)', backdropFilter: 'blur(10px)', borderRadius: '15px', padding: '20px 30px', boxShadow: '0 8px 25px rgba(0, 210, 255, 0.1)', transition: 'transform 0.3s ease', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '30px', textAlign: 'left' }}
+                className="single-club animate-fade-up flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left" 
+                style={{ background: 'linear-gradient(90deg, rgba(0, 210, 255, 0.05), rgba(0, 91, 226, 0.02))', border: '1px solid rgba(0, 210, 255, 0.2)', backdropFilter: 'blur(10px)', borderRadius: '15px', padding: '20px 30px', boxShadow: '0 8px 25px rgba(0, 210, 255, 0.1)', transition: 'transform 0.3s ease' }}
                 onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.borderColor = 'rgba(0, 210, 255, 0.5)'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'rgba(0, 210, 255, 0.2)'; }}
               >
@@ -117,7 +117,7 @@ const Clubs = () => {
                   <h4 style={{ fontSize: '24px', color: '#ffffff', marginBottom: '5px', fontWeight: 'bold' }}>{club.name}</h4>
                   <p style={{ fontSize: '15px', color: '#b0aab3', lineHeight: '1.5', margin: 0 }}>{club.desc}</p>
                 </div>
-                <div style={{ flexShrink: 0, width: '220px' }}>
+                <div className="w-full md:w-[220px]" style={{ flexShrink: 0 }}>
                   {renderClubAction(club.name)}
                 </div>
               </div>
