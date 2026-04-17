@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const Reg = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useContext(AuthContext);
-  const [formData, setFormData] = useState({ clubName: 'Ace Club', name: '', email: '', phone: '', yearDepartment: '', whyJoin: '' });
+  
+  const queryParams = new URLSearchParams(location.search);
+  const targetClub = queryParams.get('club') || 'Ace Club';
+  
+  const [formData, setFormData] = useState({ clubName: targetClub, name: '', email: '', phone: '', yearDepartment: '', whyJoin: '' });
   const [success, setSuccess] = useState(false);
   const [myStatuses, setMyStatuses] = useState({});
 
@@ -56,14 +61,10 @@ const Reg = () => {
       <div className="animate-fade-up" style={{ maxWidth: '450px', margin: '0 auto', background: 'rgba(255,255,255,0.03)', padding: '40px', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)' }}>
         <h1 style={{ textAlign: 'center', fontSize: '32px', fontWeight: 800, color: '#fff', marginBottom: '30px' }}>Register for a Club</h1>
         <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
-          <select className="form-control" name="clubName" value={formData.clubName} onChange={handleChange} required style={{ width: '100%', marginBottom: '20px', padding: '10px', background: '#3b0066', color: 'white' }}>
-              <option value="Ace Club">Ace Club</option>
-              <option value="CSI">CSI</option>
-              <option value="Coding Club">Coding Club</option>
-              <option value="Lolo Band">Lolo Band</option>
-              <option value="ISTE">ISTE</option>
-              <option value="Language Nest">Language Nest</option>
-          </select>
+          <div style={{ marginBottom: '20px', textAlign: 'left' }}>
+            <label style={{ fontSize: '14px', color: '#ccc', marginLeft: '5px' }}>Registering For:</label>
+            <input className="form-control" name="clubName" value={formData.clubName} readOnly style={{ width: '100%', padding: '10px', background: 'rgba(255,60,87,0.1)', color: '#ff3c57', fontWeight: 'bold', cursor: 'not-allowed', marginTop: '5px' }} />
+          </div>
           <input className="form-control" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name" required type="text" style={{ width: '100%', marginBottom: '20px', padding: '10px' }} />
           <input className="form-control" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required type="email" style={{ width: '100%', marginBottom: '20px', padding: '10px' }} />
           <input className="form-control" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone" required type="tel" style={{ width: '100%', marginBottom: '20px', padding: '10px' }} />

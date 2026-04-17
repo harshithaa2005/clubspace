@@ -76,13 +76,16 @@ const Clubs = () => {
       );
     } else if (status === 'Rejected') {
         return (
-          <button className="btn" disabled style={{ marginTop: 'auto', width: '100%', background: 'rgba(255, 255, 255, 0.1)', color: '#ff3c57', border: '1px solid #ff3c57', cursor: 'not-allowed', boxShadow: 'none' }}>
-             Application Rejected
-          </button>
+          <div style={{ marginTop: 'auto', textAlign: 'center', display: 'flex', flexDirection: 'column' }}>
+            <button className="btn" disabled style={{ width: '100%', background: 'rgba(255, 255, 255, 0.1)', color: '#ff3c57', border: '1px solid #ff3c57', cursor: 'not-allowed', boxShadow: 'none', marginBottom: '8px' }}>
+               Application Rejected
+            </button>
+            <Link to={`/reg?club=${encodeURIComponent(clubName)}`} style={{ fontSize: '13px', color: '#ff8a00', textDecoration: 'underline' }}>Want to try again?</Link>
+          </div>
         );
     } else {
       return (
-        <Link to="/reg" style={{ marginTop: 'auto' }}>
+        <Link to={`/reg?club=${encodeURIComponent(clubName)}`} style={{ marginTop: 'auto' }}>
           <button className="btn" style={{ width: '100%' }}>Register Now</button>
         </Link>
       );

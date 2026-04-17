@@ -57,7 +57,12 @@ router.post('/club-register', auth, async (req, res) => {
     // Check for existing registration
     const existingRegistration = await ClubRegistration.findOne({ user: req.user.id, clubName });
     if(existingRegistration) {
-      return res.status(400).json({ msg: 'You have already applied or registered for this club.' });
+      if (existingRegistration.status === 'Rejected') {
+        // Clear the old rejected application to allow re-applying
+        await ClubRegistration.findOneAndDelete({ _id: existingRegistration._id });
+      } else {
+        return res.status(400).json({ msg: 'You have already applied or registered for this club.' });
+      }
     }
     
     const registration = new ClubRegistration({
